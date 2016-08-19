@@ -8,29 +8,29 @@ from SpiderStarts.settings import conf
 
 def index(request):
 
-
-    #获取服务器地址项目版本信息
-    try:
-        project = json.loads(requests.get("http://192.168.10.24:6800/listprojects.json",timeout=1).content)
-        status = project['status']
-    except:
-        status ='no'
-        projects = u"未知"
-    if status =='ok':
-        projects = len(project['projects'])
-    else:
-        projects = u"未知"
-    #获取服务器地址爬虫数信息
-    try:
-        project = json.loads(requests.get("http://192.168.10.24:6800/listspiders.json?project=spider123",timeout=1).content)
-        status = project['status']
-    except:
-        status ='no'
-        spiders = u"未知"
-    if status =='ok':
-        spiders = len(project['spiders'])
-    else:
-        spiders = u"未知"
+    for i in conf:
+        #获取服务器地址项目版本信息
+        try:
+            project = json.loads(requests.get("http://%s:%s/listprojects.json"%(i['http'],i['prot']),timeout=1).content)
+            status = project['status']
+        except:
+            status ='no'
+            projects = u"未知"
+        if status =='ok':
+            projects = len(project['projects'])
+        else:
+            projects = u"未知"
+        #获取服务器地址爬虫数信息
+        try:
+            project = json.loads(requests.get("http://192.168.10.24:6800/listspiders.json?project=spider123",timeout=1).content)
+            status = project['status']
+        except:
+            status ='no'
+            spiders = u"未知"
+        if status =='ok':
+            spiders = len(project['spiders'])
+        else:
+            spiders = u"未知"
     #获取服务器爬虫负载均衡
     try:
         project = json.loads(requests.get("http://192.168.10.24:6800/daemonstatus.json",timeout=1).content)
