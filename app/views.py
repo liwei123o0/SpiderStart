@@ -97,10 +97,12 @@ def spiderjob(request):
             coutpend = 0
             coutrunn = 0
             coutfinished =0
-
-        for spider in crawlspider.values()[0][0]['spiders']:
-            cra =  i['name'],spider,i['http']
-            cwlspider.append(cra)
+        if crawlspider.has_key(i['http']):
+            cout = 1
+            for spider in  crawlspider[i['http']][0]['spiders']:
+                cra = cout,i['name'],spider,i['http']
+                cout+=1
+                cwlspider.append(list(cra))
     return  render(request,'ui-elements.html',
                    {'coutpend':coutpend,
                     'coutrunn':coutrunn,
@@ -109,5 +111,5 @@ def spiderjob(request):
                     'running':running,
                     'finished':finished,
                     'listjobs':listjobs,
-                    'crawlspider':cwlspider})
+                    'cwlspider':cwlspider})
 

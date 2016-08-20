@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 #! /usr/bin/env python
+from SpiderStarts.settings import conf
 
-aa = {'192.168.10.24': [{'name': 'spider123', 'spiders': [u'ccgpz', u'ccgpz_big', u'ccgpz_gg', u'ccgpz_xy']}]}
+crawlspider = {'192.168.10.24': [{'name': 'spider123', 'spiders': [u'ccgpz', u'ccgpz_big', u'ccgpz_gg', u'ccgpz_xy']}]}
 
-b =  aa.values()[0]
-
-print  b[0]['spiders']
-# print aa[aa.keys()[0]]['spiders']
-
-for i in crawlspider.values()[0][0]['spiders']:
-    print i,aa.values()[0][0]['name'],'192.168.10.24'
+for c in conf:
+    if crawlspider.has_key(c['http']):
+        cout = 1
+        for spider in  crawlspider[c['http']][0]['spiders']:
+            cra = cout,c['name'],spider,c['http']
+            print cra
+            cout+=1
