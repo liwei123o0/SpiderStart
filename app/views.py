@@ -113,3 +113,7 @@ def spiderjob(request):
                     'listjobs':listjobs,
                     'cwlspider':cwlspider})
 
+def test(request):
+
+    return render(request,'test.html')
+

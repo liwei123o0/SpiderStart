@@ -2,350 +2,353 @@
 {% block head %}
 {% endblock %}
 {% block content %}
-<div id="page-wrapper">
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <p class="bg-success img-rounded">&nbsp;&nbsp;&nbsp;爬虫spiders</p>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>序号</th>
-                                <th>项目名称</th>
-                                <th>爬虫名称</th>
-                                <th>服务器地址</th>
-                                <th width="75px">启动</th>
-                                <th width="75px">停止</th>
-                                <th width="75px">设置</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for cwls in cwlspider %}
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p class="bg-success img-rounded">&nbsp;&nbsp;&nbsp;爬虫spiders</p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>项目名称</th>
+                                    <th>爬虫名称</th>
+                                    <th>服务器地址</th>
+                                    <th width="75px">启动</th>
+                                    <th width="75px">停止</th>
+                                    <th width="75px">设置</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for cwls in cwlspider %}
                                     <tr>
-                                    {% for c in cwls %}
+                                        {% for c in cwls %}
+                                            <td>
+                                                {{ c }}
+                                            </td>
+                                        {% endfor %}
+
                                         <td>
-                                            {{ c }}
+                                            <button id="qd" class="btn btn-success" href="" onclick="qd(this)">启动
+                                            </button>
                                         </td>
-                                    {% endfor %}
-
-                                   <td><button id="qd" class="btn btn-success" href="" onclick="qd('1')">启动</button></td>
-                                    <td><button class="btn btn-danger" href="#">停止</button></td>
-                                    <td><button class="btn btn-primary" href="#">设置</button></td>
+                                        <td>
+                                            <button class="btn btn-danger" href="#">停止</button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary" href="#">设置</button>
+                                        </td>
                                     </tr>
-                            {% endfor %}
-                            <!--<tr>-->
-                            <!--<td>1</td>-->
-                            <!--<td>Mark</td>-->
-                            <!--<td>Mark</td>-->
-                            <!--<td>192.168.10.24</td>-->
-                            <!--<td><a class="btn btn-success" href="#">启动</a></td>-->
-                            <!--<td><a class="btn btn-danger" href="#">停止</a></td>-->
-                            <!--<td><a class="btn btn-primary" href="#">设置</a></td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                            <!--<td>2</td>-->
-                            <!--<td>Jacob</td>-->
-                            <!--<td>Mark</td>-->
-                            <!--<td>192.168.10.24</td>-->
-                            <!--<td><a class="btn btn-success" href="#">启动</a></td>-->
-                            <!--<td><a class="btn btn-danger" href="#">停止</a></td>-->
-                            <!--<td><a class="btn btn-primary" href="#">设置</a></td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                            <!--<td>3</td>-->
-                            <!--<td>Larry</td>-->
-                            <!--<td>Mark</td>-->
-                            <!--<td>192.168.10.24</td>-->
-                            <!--<td><a class="btn btn-success" href="#">启动</a></td>-->
-                            <!--<td><a class="btn btn-danger" href="#">停止</a></td>-->
-                            <!--<td><a class="btn btn-primary" href="#">设置</a></td>-->
-                            <!--</tr>-->
-                            </tbody>
-                        </table>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <p class="bg-info img-rounded">&nbsp;&nbsp;&nbsp;爬虫任务等待</p>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p class="bg-info img-rounded">&nbsp;&nbsp;&nbsp;爬虫任务等待</p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>项目名称</th>
+                                    <th>爬虫名称</th>
+                                    <th>Job ID</th>
+                                    <th>开始时间</th>
+                                    <th>结束时间</th>
+                                    <th>日志</th>
+                                    <th>Items</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John</td>
+                                    <td>Doe</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Kimsila</td>
+                                    <td>Marriye</td>
+                                    <td>Kim1425</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Rossye</td>
+                                    <td>Nermal</td>
+                                    <td>Rossy1245</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Richard</td>
+                                    <td>Orieal</td>
+                                    <td>Rich5685</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Jacob</td>
+                                    <td>Hielsar</td>
+                                    <td>Jac4587</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Wrapel</td>
+                                    <td>Dere</td>
+                                    <td>Wrap4585</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th>序号</th>
-                                <th>项目名称</th>
-                                <th>爬虫名称</th>
-                                <th>Job ID</th>
-                                <th>开始时间</th>
-                                <th>结束时间</th>
-                                <th>日志</th>
-                                <th>Items</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {#                                {% for i in pending %}#}
-                            {#                                    <tr>#}
-                            {#                                    <td></td>#}
-                            {#                                    {% for key, value in i.items %}#}
-                            {#                                        <td>{{ value }}</td>#}
-                            {#                                    {% endfor %}#}
-                            {#                                    </tr>#}
-                            {#                                {% endfor %}#}
-                            <tr>
-                                <td>1</td>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Kimsila</td>
-                                <td>Marriye</td>
-                                <td>Kim1425</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Rossye</td>
-                                <td>Nermal</td>
-                                <td>Rossy1245</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Richard</td>
-                                <td>Orieal</td>
-                                <td>Rich5685</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Jacob</td>
-                                <td>Hielsar</td>
-                                <td>Jac4587</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Wrapel</td>
-                                <td>Dere</td>
-                                <td>Wrap4585</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            </tbody>
-                        </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p class="bg-primary img-rounded">&nbsp;&nbsp;&nbsp;爬虫运行状态</p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>项目名称</th>
+                                    <th>爬虫名称</th>
+                                    <th>Job ID</th>
+                                    <th>开始时间</th>
+                                    <th>结束时间</th>
+                                    <th>日志</th>
+                                    <th>Items</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John</td>
+                                    <td>Doe</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Kimsila</td>
+                                    <td>Marriye</td>
+                                    <td>Kim1425</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Rossye</td>
+                                    <td>Nermal</td>
+                                    <td>Rossy1245</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Richard</td>
+                                    <td>Orieal</td>
+                                    <td>Rich5685</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Jacob</td>
+                                    <td>Hielsar</td>
+                                    <td>Jac4587</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Wrapel</td>
+                                    <td>Dere</td>
+                                    <td>Wrap4585</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p class="bg-success  img-rounded">&nbsp;&nbsp;&nbsp;爬虫完成状态</p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>项目名称</th>
+                                    <th>爬虫名称</th>
+                                    <th>Job ID</th>
+                                    <th>开始时间</th>
+                                    <th>结束时间</th>
+                                    <th>日志</th>
+                                    <th>Items</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John</td>
+                                    <td>Doe</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Kimsila</td>
+                                    <td>Marriye</td>
+                                    <td>Kim1425</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Rossye</td>
+                                    <td>Nermal</td>
+                                    <td>Rossy1245</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Richard</td>
+                                    <td>Orieal</td>
+                                    <td>Rich5685</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Jacob</td>
+                                    <td>Hielsar</td>
+                                    <td>Jac4587</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Wrapel</td>
+                                    <td>Dere</td>
+                                    <td>Wrap4585</td>
+                                    <td>name@site.com</td>
+                                    <td>John15482</td>
+                                    <td>name@site.com</td>
+                                    <td>name@site.com</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <p class="bg-primary img-rounded">&nbsp;&nbsp;&nbsp;爬虫运行状态</p>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th>序号</th>
-                                <th>项目名称</th>
-                                <th>爬虫名称</th>
-                                <th>Job ID</th>
-                                <th>开始时间</th>
-                                <th>结束时间</th>
-                                <th>日志</th>
-                                <th>Items</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Kimsila</td>
-                                <td>Marriye</td>
-                                <td>Kim1425</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Rossye</td>
-                                <td>Nermal</td>
-                                <td>Rossy1245</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Richard</td>
-                                <td>Orieal</td>
-                                <td>Rich5685</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Jacob</td>
-                                <td>Hielsar</td>
-                                <td>Jac4587</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Wrapel</td>
-                                <td>Dere</td>
-                                <td>Wrap4585</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <p class="bg-success  img-rounded">&nbsp;&nbsp;&nbsp;爬虫完成状态</p>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th>序号</th>
-                                <th>项目名称</th>
-                                <th>爬虫名称</th>
-                                <th>Job ID</th>
-                                <th>开始时间</th>
-                                <th>结束时间</th>
-                                <th>日志</th>
-                                <th>Items</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Kimsila</td>
-                                <td>Marriye</td>
-                                <td>Kim1425</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Rossye</td>
-                                <td>Nermal</td>
-                                <td>Rossy1245</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Richard</td>
-                                <td>Orieal</td>
-                                <td>Rich5685</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Jacob</td>
-                                <td>Hielsar</td>
-                                <td>Jac4587</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Wrapel</td>
-                                <td>Dere</td>
-                                <td>Wrap4585</td>
-                                <td>name@site.com</td>
-                                <td>John15482</td>
-                                <td>name@site.com</td>
-                                <td>name@site.com</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{% endblock %}
+{% block script %}
+    <script src="../static/assets/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        function qd(o) {
+            var tds = $(o).parent().parent().find("td")
+            var c1,c2,c3;
+            $(tds).each(function (i,td) {
+                 if(i==1){
+                     c1=$(this).html();
+                 }else if(i==2){
+                     c2=$(this).html();
+                 }
+                 else if(i==3){
+                    c3=$(this).html();
+                 }
+            });
+            var name = c1.replace(/^(\s|\u00A0)+/,'').replace(/(\s|\u00A0)+$/,'');
+            var spider = c2.replace(/^(\s|\u00A0)+/,'').replace(/(\s|\u00A0)+$/,'');
+            var http = c3.replace(/^(\s|\u00A0)+/,'').replace(/(\s|\u00A0)+$/,'');
+            var qdapi =  "http://"+http+":6800/schedule.json -d project="+name+" -d spider="+spider;
+            alert(qdapi);
+            location.href=qdapi
+            $.post(qdapi,
+              function(data){
+               alert(data)
+              },
+              "text");//这里返回的类型有：json,html,xml,text
+            document.location.href =qdapi;
+        }
+    </script>
 {% endblock %}

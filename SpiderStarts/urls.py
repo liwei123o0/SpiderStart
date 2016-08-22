@@ -23,4 +23,5 @@ urlpatterns = [
 
     url(r'^index/',index),
     url(r'^spiderjob/',spiderjob),
+    url(r'^test/',test)
 ]
