@@ -77,6 +77,7 @@ def spiderjob(request):
             crawlspider[i['http']] = [{'name':i['name'],'spiders':project['spiders']}]
 
     #获取爬虫详细数据
+    cout = 1
     for i in conf:
         try:
             project = json.loads(requests.get("http://%s:%s/listjobs.json?project=%s"%(i['http'],i['prot'],i['name']),timeout=1).content)
@@ -99,8 +100,8 @@ def spiderjob(request):
             coutpend = 0
             coutrunn = 0
             coutfinished =0
+        #判断字典是否有该key值
         if crawlspider.has_key(i['http']):
-            cout = 1
             for spider in  crawlspider[i['http']][0]['spiders']:
                 cra = cout,i['name'],spider,i['http']
                 cout+=1
@@ -117,18 +118,50 @@ def spiderjob(request):
                     })
 #任务状态页面
 def spiderstatus(request):
-
-    return render(request,'spiderstatus.html')
+    projects={}
+    pendings = []
+    runnings = []
+    finishes = []
+    coutp = 0
+    coutr=0
+    coutf = 0
+    for c in conf:
+        try:
+            project = json.loads(requests.get("http://%s:%s/listjobs.json?project=%s"%(c['http'],c['prot'],c['name']),timeout=1).content)
+        except:
+            status ='no'
+            project={}
+        projects[c['http']] = {'finished':project['finished'],'running':project['running'],'pending':project['pending']}
+        # cout +=len(project['pending'])
+        if projects.has_key(c['http']):
+            for pending in  projects[c['http']]['pending']:
+                coutp+=1
+                cra = coutp,c['http'],c['name'],pending['spider'],pending['id']
+                pendings.append(list(cra))
+                print cra
+        if projects.has_key(c['http']):
+            for running in  projects[c['http']]['running']:
+                coutr+=1
+                cra = coutr,c['http'],c['name'],running['spider'],running['id'],running['start_time']
+                runnings.append(list(cra))
+        if projects.has_key(c['http']):
+            for finished in  projects[c['http']]['finished']:
+                coutf+=1
+                cra = coutf,c['http'],c['name'],finished['spider'],finished['id'],finished['start_time'],finished['end_time']
+                finishes.append(list(cra))
+    # print finishes
+    return render(request,'spiderstatus.html',{'pendings':pendings,'running':runnings,'finishes':finishes})
 
 #根据指定参数运行指定爬虫并返回任务状态
 def runspider(request):
     run = request.GET['runspider']
     runstart = json.loads(os.popen("curl %s"%run,'r').read())
-    print runstart
     status = runstart['status']
     jobid = runstart['jobid']
     jobids.append(jobid)
-    return HttpResponse(u"启动状态:%s,<br>任务ID:%s"%(status,jobid))
+    if status =='ok':
+        status = u'已启动'
+    return HttpResponse(u"启动状态:%s!<br>任务ID:%s"%(status,jobid))
 
 #管局指定参数停止指定爬虫并返回状态
 def stopspider(request):
@@ -138,6 +171,7 @@ def stopspider(request):
     except:
         return HttpResponse(u"该爬虫没有运行任务!")
     stopcrawl = json.loads(os.popen("curl %s%s"%(stop,jobid),'r').read())
-    print stopcrawl
     status = stopcrawl['status']
+    if status =='ok':
+        status = u'已停止!'
     return HttpResponse(u"停止状态:%s"%(status))

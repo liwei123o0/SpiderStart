@@ -5,4 +5,4 @@ from SpiderStarts.settings import conf
 # Create your tests here.
 
 for i in conf:
-    print i['http'],i['prot']
+    print i['http'],i['prot'],i['name']

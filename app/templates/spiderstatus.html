@@ -7,8 +7,8 @@
                 <small>欢迎查看</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#">主页</a></li>
-                <li><a href="#">任务状态</a></li>
+                <li><a href="/index/">主页</a></li>
+                <li><a href="/spiderstatus/">任务状态</a></li>
                 <li class="active">详情</li>
             </ol>
         </div>
@@ -24,6 +24,7 @@
                                 <thead>
                                 <tr>
                                     <th>序号</th>
+                                    <th>服务器地址</th>
                                     <th>项目名称</th>
                                     <th>爬虫名称</th>
                                     <th>Job ID</th>
@@ -34,66 +35,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Kimsila</td>
-                                    <td>Marriye</td>
-                                    <td>Kim1425</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Rossye</td>
-                                    <td>Nermal</td>
-                                    <td>Rossy1245</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Richard</td>
-                                    <td>Orieal</td>
-                                    <td>Rich5685</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Jacob</td>
-                                    <td>Hielsar</td>
-                                    <td>Jac4587</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Wrapel</td>
-                                    <td>Dere</td>
-                                    <td>Wrap4585</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
+                                {% for trs in pendings %}
+                                    <tr>
+                                        {% for pending in trs %}
+                                            <td>{{ pending }}</td>
+                                         {% endfor %}
+                                    </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>
@@ -113,6 +61,7 @@
                                 <thead>
                                 <tr>
                                     <th>序号</th>
+                                    <th>服务器地址</th>
                                     <th>项目名称</th>
                                     <th>爬虫名称</th>
                                     <th>Job ID</th>
@@ -123,66 +72,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Kimsila</td>
-                                    <td>Marriye</td>
-                                    <td>Kim1425</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Rossye</td>
-                                    <td>Nermal</td>
-                                    <td>Rossy1245</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Richard</td>
-                                    <td>Orieal</td>
-                                    <td>Rich5685</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Jacob</td>
-                                    <td>Hielsar</td>
-                                    <td>Jac4587</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Wrapel</td>
-                                    <td>Dere</td>
-                                    <td>Wrap4585</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
+                                {% for trs in runnings %}
+                                    <tr>
+                                        {% for running in trs %}
+                                            <td>{{ running }}</td>
+                                         {% endfor %}
+                                    </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>
@@ -202,6 +98,7 @@
                                 <thead>
                                 <tr>
                                     <th>序号</th>
+                                    <th>服务器地址</th>
                                     <th>项目名称</th>
                                     <th>爬虫名称</th>
                                     <th>Job ID</th>
@@ -212,66 +109,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Kimsila</td>
-                                    <td>Marriye</td>
-                                    <td>Kim1425</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Rossye</td>
-                                    <td>Nermal</td>
-                                    <td>Rossy1245</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Richard</td>
-                                    <td>Orieal</td>
-                                    <td>Rich5685</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Jacob</td>
-                                    <td>Hielsar</td>
-                                    <td>Jac4587</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Wrapel</td>
-                                    <td>Dere</td>
-                                    <td>Wrap4585</td>
-                                    <td>name@site.com</td>
-                                    <td>John15482</td>
-                                    <td>name@site.com</td>
-                                    <td>name@site.com</td>
-                                </tr>
+                                {% for trs in finishes %}
+                                    <tr>
+                                        {% for finished in trs %}
+                                            <td>{{ finished }}</td>
+                                         {% endfor %}
+                                    </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>

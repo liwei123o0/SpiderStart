@@ -7,8 +7,8 @@
                 <small>欢迎查看</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#">主页</a></li>
-                <li><a href="#">爬虫工作台</a></li>
+                <li><a href="/index/">主页</a></li>
+                <li><a href="/spiderjob/">爬虫工作台</a></li>
                 <li class="active">详情</li>
             </ol>
         </div>
@@ -40,7 +40,6 @@
                                                 {{ c }}
                                             </td>
                                         {% endfor %}
-
                                         <td>
                                             <button id="runspider" class="btn btn-success" href=""
                                                     onclick="runspider(this)">启动
@@ -52,7 +51,7 @@
                                             </button>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary" href="#">设置</button>
+                                            <button class="btn btn-primary" href="#" onclick="setspider(this)">设置</button>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -88,9 +87,11 @@
             var schedule = "http://" + http + ":6800/schedule.json -d project=" + name + " -d spider=" + spider;
             $.get("/runspider/", {'runspider': schedule},
                     function (data) {
-                        layer.msg(data, {
-                            time: 20000, //20s后自动关闭
-                            btn: ['知道了']
+                        layer.alert(data,{
+                            skin : 'layer-ext-myskin',
+                            btn: ['知道了'],
+                            title:'提示信息!',
+                            time: 20000 //20s后自动关闭
                         });
                     });//这里返回的类型有：json,html,xml,text
         }
@@ -115,11 +116,23 @@
             var cancel = "http://" + http + ":6800/cancel.json -d project=" + name + " -d job=";
             $.get("/stopspider/", {'stopspider': cancel},
                     function (data) {
-                        layer.msg(data, {
-                            time: 20000, //20s后自动关闭
-                            btn: ['知道了']
+                        layer.alert(data,{
+                            skin : 'layer-ext-myskin',
+                            btn: ['知道了'],
+                            title:'提示信息!',
+                            time: 20000 //20s后自动关闭
                         });
                     });//这里返回的类型有：json,html,xml,text
+        }
+    </script>
+    <script type="text/javascript">
+        function setspider(o){
+            layer.alert('功能正在开发中!',{
+                skin : 'layer-ext-myskin',
+                btn: ['知道了'],
+                title:'提示信息!',
+                time: 20000 //20s后自动关闭
+            });
         }
     </script>
 {% endblock %}

@@ -118,8 +118,8 @@ USE_L10N = True
 USE_TZ = True
 
 conf = [
-  {"name":"spider123","http":"192.168.10.24","prot":"6800"},
-  {"name":"spider","http":"192.168.10.25","prot":"6800"}
+    {"name":"spider123","http":"192.168.10.24","prot":"6800"},
+    {"name":"spider123","http":"192.168.10.24","prot":"6800"},
 ]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
