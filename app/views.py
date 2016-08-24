@@ -5,8 +5,10 @@ from django.shortcuts import render
 import requests
 import json
 from SpiderStarts.settings import conf
+from django.http import HttpResponse
+import os
 
-
+jobids = []
 
 def index(request):
     listprojects = 0
@@ -111,9 +113,25 @@ def spiderjob(request):
                     'running':running,
                     'finished':finished,
                     'listjobs':listjobs,
-                    'cwlspider':cwlspider})
+                    'cwlspider':cwlspider,
+                    })
 
-def test(request):
+def runspider(request):
+    run = request.GET['runspider']
+    runstart = json.loads(os.popen("curl %s"%run,'r').read())
+    print runstart
+    status = runstart['status']
+    jobid = runstart['jobid']
+    jobids.append(jobid)
+    return HttpResponse(u"启动状态:%s,<br>任务ID:%s"%(status,jobid))
 
-    return render(request,'test.html')
-
+def stopspider(request):
+    stop = request.GET['stopspider']
+    try:
+        jobid = jobids.pop()
+    except:
+        return HttpResponse(u"没有运行任务!")
+    stopcrawl = json.loads(os.popen("curl %s%s"%(stop,jobid),'r').read())
+    print stopcrawl
+    status = stopcrawl['status']
+    return HttpResponse(u"停止状态:%s"%(status))

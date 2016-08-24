@@ -33,11 +33,14 @@
                                         {% endfor %}
 
                                         <td>
-                                            <button id="qd" class="btn btn-success" href="" onclick="qd(this)">启动
+                                            <button id="runspider" class="btn btn-success" href=""
+                                                    onclick="runspider(this)">启动
                                             </button>
                                         </td>
                                         <td>
-                                            <button class="btn btn-danger" href="#">停止</button>
+                                            <button id="stopspider" class="btn btn-danger" href=""
+                                                    onclick="stopspider(this)">停止
+                                            </button>
                                         </td>
                                         <td>
                                             <button class="btn btn-primary" href="#">设置</button>
@@ -323,32 +326,59 @@
 {% endblock %}
 {% block script %}
     <script src="../static/assets/jquery-1.9.1.min.js"></script>
+    <script src="../static/assets/layer.js"></script>
     <script type="text/javascript">
-        function qd(o) {
-            var tds = $(o).parent().parent().find("td")
-            var c1,c2,c3;
-            $(tds).each(function (i,td) {
-                 if(i==1){
-                     c1=$(this).html();
-                 }else if(i==2){
-                     c2=$(this).html();
-                 }
-                 else if(i==3){
-                    c3=$(this).html();
-                 }
+        function runspider(o) {
+            var tds = $(o).parent().parent().find("td");
+            var c1, c2, c3;
+            $(tds).each(function (i, td) {
+                if (i == 1) {
+                    c1 = $(this).html();
+                } else if (i == 2) {
+                    c2 = $(this).html();
+                }
+                else if (i == 3) {
+                    c3 = $(this).html();
+                }
             });
-            var name = c1.replace(/^(\s|\u00A0)+/,'').replace(/(\s|\u00A0)+$/,'');
-            var spider = c2.replace(/^(\s|\u00A0)+/,'').replace(/(\s|\u00A0)+$/,'');
-            var http = c3.replace(/^(\s|\u00A0)+/,'').replace(/(\s|\u00A0)+$/,'');
-            var qdapi =  "http://"+http+":6800/schedule.json -d project="+name+" -d spider="+spider;
-            alert(qdapi);
-            location.href=qdapi
-            $.post(qdapi,
-              function(data){
-               alert(data)
-              },
-              "text");//这里返回的类型有：json,html,xml,text
-            document.location.href =qdapi;
+            var name = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var spider = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var http = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var schedule = "http://" + http + ":6800/schedule.json -d project=" + name + " -d spider=" + spider;
+            $.get("/runspider/", {'runspider': schedule},
+                    function (data) {
+                        layer.msg(data,{
+                            time: 20000, //20s后自动关闭
+                            btn: ['知道了']
+                        });
+                    });//这里返回的类型有：json,html,xml,text
+        }
+    </script>
+    <script type="text/javascript">
+        function stopspider(o) {
+            var tds = $(o).parent().parent().find("td");
+            var c1, c2, c3;
+            $(tds).each(function (i, td) {
+                if (i == 1) {
+                    c1 = $(this).html();
+                } else if (i == 2) {
+                    c2 = $(this).html();
+                }
+                else if (i == 3) {
+                    c3 = $(this).html();
+                }
+            });
+            var name = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var spider = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var http = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var cancel = "http://" + http + ":6800/cancel.json -d project=" + name + " -d job=";
+            $.get("/stopspider/", {'stopspider': cancel},
+                    function (data) {
+                        layer.msg(data,{
+                            time: 20000, //20s后自动关闭
+                            btn: ['知道了']
+                        });
+                    });//这里返回的类型有：json,html,xml,text
         }
     </script>
 {% endblock %}

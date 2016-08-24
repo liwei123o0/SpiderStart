@@ -23,5 +23,6 @@ urlpatterns = [
 
     url(r'^index/',index),
     url(r'^spiderjob/',spiderjob),
-    url(r'^test/',test)
+    url(r'^runspider/',runspider),
+    url(r'^stopspider',stopspider),
 ]
