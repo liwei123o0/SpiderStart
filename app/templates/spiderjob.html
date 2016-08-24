@@ -1,0 +1,125 @@
+﻿{% extends 'base.html' %}
+{% block content %}
+    <div id="page-wrapper">
+        <div class="header">
+            <h1 class="page-header">
+                爬虫项目概况
+                <small>欢迎查看</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">主页</a></li>
+                <li><a href="#">爬虫工作台</a></li>
+                <li class="active">详情</li>
+            </ol>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p class="bg-success img-rounded">&nbsp;&nbsp;&nbsp;爬虫spiders</p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>项目名称</th>
+                                    <th>爬虫名称</th>
+                                    <th>服务器地址</th>
+                                    <th width="75px">启动</th>
+                                    <th width="75px">停止</th>
+                                    <th width="75px">设置</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for cwls in cwlspider %}
+                                    <tr>
+                                        {% for c in cwls %}
+                                            <td>
+                                                {{ c }}
+                                            </td>
+                                        {% endfor %}
+
+                                        <td>
+                                            <button id="runspider" class="btn btn-success" href=""
+                                                    onclick="runspider(this)">启动
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button id="stopspider" class="btn btn-danger" href=""
+                                                    onclick="stopspider(this)">停止
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary" href="#">设置</button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="../static/assets/jquery-1.9.1.min.js"></script>
+    <script src="../static/assets/layer.js"></script>
+    <script type="text/javascript">
+        function runspider(o) {
+            var tds = $(o).parent().parent().find("td");
+            var c1, c2, c3;
+            $(tds).each(function (i, td) {
+                if (i == 1) {
+                    c1 = $(this).html();
+                } else if (i == 2) {
+                    c2 = $(this).html();
+                }
+                else if (i == 3) {
+                    c3 = $(this).html();
+                }
+            });
+            var name = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var spider = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var http = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var schedule = "http://" + http + ":6800/schedule.json -d project=" + name + " -d spider=" + spider;
+            $.get("/runspider/", {'runspider': schedule},
+                    function (data) {
+                        layer.msg(data, {
+                            time: 20000, //20s后自动关闭
+                            btn: ['知道了']
+                        });
+                    });//这里返回的类型有：json,html,xml,text
+        }
+    </script>
+    <script type="text/javascript">
+        function stopspider(o) {
+            var tds = $(o).parent().parent().find("td");
+            var c1, c2, c3;
+            $(tds).each(function (i, td) {
+                if (i == 1) {
+                    c1 = $(this).html();
+                } else if (i == 2) {
+                    c2 = $(this).html();
+                }
+                else if (i == 3) {
+                    c3 = $(this).html();
+                }
+            });
+            var name = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var spider = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var http = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var cancel = "http://" + http + ":6800/cancel.json -d project=" + name + " -d job=";
+            $.get("/stopspider/", {'stopspider': cancel},
+                    function (data) {
+                        layer.msg(data, {
+                            time: 20000, //20s后自动关闭
+                            btn: ['知道了']
+                        });
+                    });//这里返回的类型有：json,html,xml,text
+        }
+    </script>
+{% endblock %}

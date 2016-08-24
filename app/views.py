@@ -105,7 +105,7 @@ def spiderjob(request):
                 cra = cout,i['name'],spider,i['http']
                 cout+=1
                 cwlspider.append(list(cra))
-    return  render(request,'ui-elements.html',
+    return  render(request,'spiderjob.html',
                    {'coutpend':coutpend,
                     'coutrunn':coutrunn,
                     'coutfinished':coutfinished,
@@ -115,7 +115,12 @@ def spiderjob(request):
                     'listjobs':listjobs,
                     'cwlspider':cwlspider,
                     })
+#任务状态页面
+def spiderstatus(request):
 
+    return render(request,'spiderstatus.html')
+
+#根据指定参数运行指定爬虫并返回任务状态
 def runspider(request):
     run = request.GET['runspider']
     runstart = json.loads(os.popen("curl %s"%run,'r').read())
@@ -125,12 +130,13 @@ def runspider(request):
     jobids.append(jobid)
     return HttpResponse(u"启动状态:%s,<br>任务ID:%s"%(status,jobid))
 
+#管局指定参数停止指定爬虫并返回状态
 def stopspider(request):
     stop = request.GET['stopspider']
     try:
         jobid = jobids.pop()
     except:
-        return HttpResponse(u"没有运行任务!")
+        return HttpResponse(u"该爬虫没有运行任务!")
     stopcrawl = json.loads(os.popen("curl %s%s"%(stop,jobid),'r').read())
     print stopcrawl
     status = stopcrawl['status']
