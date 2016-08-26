@@ -7,8 +7,7 @@ import json
 from SpiderStarts.settings import conf
 from django.http import HttpResponse
 import os
-
-jobids = []
+from django.core.paginator import Paginator
 
 def index(request):
     listprojects = 0
@@ -138,7 +137,6 @@ def spiderstatus(request):
                 coutp+=1
                 cra = coutp,c['http'],c['name'],pending['spider'],pending['id']
                 pendings.append(list(cra))
-                print cra
         if projects.has_key(c['http']):
             for running in  projects[c['http']]['running']:
                 coutr+=1
@@ -148,9 +146,8 @@ def spiderstatus(request):
             for finished in  projects[c['http']]['finished']:
                 coutf+=1
                 cra = coutf,c['http'],c['name'],finished['spider'],finished['id'],finished['start_time'],finished['end_time']
-                finishes.append(list(cra))
-    # print finishes
-    return render(request,'spiderstatus.html',{'pendings':pendings,'running':runnings,'finishes':finishes})
+                finishes.insert(0,list(cra))
+    return render(request,'spiderstatus.html',{'pendings':pendings,'runnings':runnings,'finishes':finishes})
 
 #根据指定参数运行指定爬虫并返回任务状态
 def runspider(request):
@@ -158,7 +155,6 @@ def runspider(request):
     runstart = json.loads(os.popen("curl %s"%run,'r').read())
     status = runstart['status']
     jobid = runstart['jobid']
-    jobids.append(jobid)
     if status =='ok':
         status = u'已启动'
     return HttpResponse(u"启动状态:%s!<br>任务ID:%s"%(status,jobid))
@@ -166,12 +162,15 @@ def runspider(request):
 #管局指定参数停止指定爬虫并返回状态
 def stopspider(request):
     stop = request.GET['stopspider']
-    try:
-        jobid = jobids.pop()
-    except:
-        return HttpResponse(u"该爬虫没有运行任务!")
-    stopcrawl = json.loads(os.popen("curl %s%s"%(stop,jobid),'r').read())
+    stopcrawl = json.loads(os.popen("curl %s"%(stop),'r').read())
     status = stopcrawl['status']
     if status =='ok':
         status = u'已停止!'
+    else:
+        status=u'停止异常!'
     return HttpResponse(u"停止状态:%s"%(status))
+
+def setspider(request):
+
+
+    return render(request,"setspider.html")

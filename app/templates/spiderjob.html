@@ -28,7 +28,7 @@
                                     <th>爬虫名称</th>
                                     <th>服务器地址</th>
                                     <th width="75px">启动</th>
-                                    <th width="75px">停止</th>
+                                    {#                                    <th width="75px">停止</th>#}
                                     <th width="75px">设置</th>
                                 </tr>
                                 </thead>
@@ -45,13 +45,15 @@
                                                     onclick="runspider(this)">启动
                                             </button>
                                         </td>
+                                        {#                                        <td>#}
+                                        {#                                            <button id="stopspider" class="btn btn-danger" href=""#}
+                                        {#                                                    onclick="stopspider(this)">停止#}
+                                        {#                                            </button>#}
+                                        {#                                        </td>#}
                                         <td>
-                                            <button id="stopspider" class="btn btn-danger" href=""
-                                                    onclick="stopspider(this)">停止
+                                            <button id="setspider" class="btn btn-primary" href="#"
+                                                    onclick="setspider(this)">设置
                                             </button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary" href="#" onclick="setspider(this)">设置</button>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -87,10 +89,10 @@
             var schedule = "http://" + http + ":6800/schedule.json -d project=" + name + " -d spider=" + spider;
             $.get("/runspider/", {'runspider': schedule},
                     function (data) {
-                        layer.alert(data,{
-                            skin : 'layer-ext-myskin',
+                        layer.alert(data, {
+                            skin: 'layer-ext-myskin',
                             btn: ['知道了'],
-                            title:'提示信息!',
+                            title: '提示信息!',
                             time: 20000 //20s后自动关闭
                         });
                     });//这里返回的类型有：json,html,xml,text
@@ -116,22 +118,24 @@
             var cancel = "http://" + http + ":6800/cancel.json -d project=" + name + " -d job=";
             $.get("/stopspider/", {'stopspider': cancel},
                     function (data) {
-                        layer.alert(data,{
-                            skin : 'layer-ext-myskin',
+                        layer.alert(data, {
+                            skin: 'layer-ext-myskin',
                             btn: ['知道了'],
-                            title:'提示信息!',
+                            title: '提示信息!',
                             time: 20000 //20s后自动关闭
                         });
                     });//这里返回的类型有：json,html,xml,text
         }
     </script>
     <script type="text/javascript">
-        function setspider(o){
-            layer.alert('功能正在开发中!',{
-                skin : 'layer-ext-myskin',
-                btn: ['知道了'],
-                title:'提示信息!',
-                time: 20000 //20s后自动关闭
+        function setspider(o) {
+            layer.open({
+                type: 2,
+                title: '设置选项',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['400px', '500px'],
+                content: '/setspider/' //iframe的url
             });
         }
     </script>
