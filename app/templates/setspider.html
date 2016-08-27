@@ -41,9 +41,13 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="firstname" class="col-xs-4 control-label">服务器地址:</label>
+            <label for="firstname" class="col-xs-4 control-label">服务器分发地址:</label>
             <div class="col-xs-8">
-                <input type="text" class="form-control" id="firstname" placeholder="服务器地址" style="width: 200px">
+                <select class="form-control">
+                    {% for http in https %}
+                        <option>{{ http }}</option>
+                    {% endfor %}
+                </select>
             </div>
         </div>
         <div class="form-group">

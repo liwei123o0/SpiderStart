@@ -171,6 +171,8 @@ def stopspider(request):
     return HttpResponse(u"停止状态:%s"%(status))
 
 def setspider(request):
+    https = []
 
-
-    return render(request,"setspider.html")
+    for c in conf:
+        https.append(c['http'])
+    return render(request,"setspider.html",{'https':https})
