@@ -21,7 +21,7 @@ from app.views import *
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    url(r'^index/',index),
+    url(r'^$',index),
     url(r'^spiderjob/',spiderjob),
     url(r'^spiderstatus/',spiderstatus),
     url(r'^runspider/',runspider),
