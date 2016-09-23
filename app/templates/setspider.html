@@ -27,23 +27,25 @@
         }
 
         input {
-            margin-top: -10px;
+            margin-top: -9px;
         }
     </style>
 </head>
 <body>
 <div class="container-fluid">
-    <form class="form-horizontal">
+    <form class="form-horizontal" action="/setspiderdata/" method="POST">
+        {% csrf_token %}
         <div class="form-group">
             <label for="firstname" class="col-xs-4 control-label">项目名称:</label>
             <div class="col-xs-8">
-                <input type="text" class="form-control" id="firstname" placeholder="项目名称" style="width: 200px">
+                <input type="text" class="form-control" id="firstname" placeholder="项目名称" style="width: 200px"
+                       name="scrapyname">
             </div>
         </div>
         <div class="form-group">
             <label for="firstname" class="col-xs-4 control-label">服务器分发地址:</label>
             <div class="col-xs-8">
-                <select class="form-control">
+                <select class="form-control" name="taskhttp">
                     {% for http in https %}
                         <option>{{ http }}</option>
                     {% endfor %}
@@ -51,21 +53,22 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-xs-4">
-                <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox1" value="option1"> 一次
+            <div class="col-xs-3">
+                <label for="firstname" class="">
+                    任务:
                 </label>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-3">
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox1" value="1" name="one" checked> 单次
+                </label>
+            </div>
+            <div class="col-xs-6">
                 <label class="checkbox-inline">
                     <input type="radio" name="optionsRadiosinline" id="optionsRadios3"
-                           value="option1" checked> 每天
-                </label>
-            </div>
-            <div class="col-xs-4">
-                <label class="checkbox-inline">
-                    <input type="radio" name="optionsRadiosinline" id="optionsRadios4"
-                           value="option2"> 每周
+                           value="every_day " checked> 每天 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <input type="radio" name="optionsRadiosinline" id="optionsRadios4"
+                           value="once_week"> 每周
                 </label>
             </div>
         </div>
@@ -73,10 +76,12 @@
             <label for="firstname" class="col-xs-4 control-label">开始时间:</label>
             <div class="col-xs-8">
                 <input class="form-control Wdate" type="text" id="d15"
-                       onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:false});"/>
+                        onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:false});"
+                        name="time"
+                />
             </div>
         </div>
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-sm-offset-2 col-sm-10 text-right">
             <button type="submit" class="btn btn-primary">设置</button>
         </div>
     </form>

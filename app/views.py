@@ -7,7 +7,8 @@ import json
 from SpiderStarts.settings import conf
 from django.http import HttpResponse
 import os
-from django.core.paginator import Paginator
+from app.tasks import add
+
 
 def index(request):
     listprojects = 0
@@ -176,3 +177,21 @@ def setspider(request):
     for c in conf:
         https.append(c['http'])
     return render(request,"setspider.html",{'https':https})
+
+def setspiderdata(request):
+
+    scrapyname = request.POST['scrapyname']
+    optionsRadiosinline = request.POST['optionsRadiosinline']
+    taskhttp = request.POST['taskhttp']
+    one = request.POST['one']
+    time = request.POST['time']
+
+    print scrapyname
+    print optionsRadiosinline
+    print taskhttp
+    print one
+    print time
+
+    a = add.delay(2,5)
+    print "a+b:%s"%a.result
+    return HttpResponse(u"设置成功!%s"%a.result)

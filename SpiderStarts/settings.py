@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import djcelery
+
+#加入消息任务队列
+djcelery. setup_loader ( )
+BROKER_URL = 'django://'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,6 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'app',
+    #异步消息队列模块
+    'djcelery',
+     'kombu.transport.django' ,
 ]
 
 MIDDLEWARE = [

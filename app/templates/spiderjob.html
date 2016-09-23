@@ -28,7 +28,6 @@
                                     <th>爬虫名称</th>
                                     <th>服务器地址</th>
                                     <th width="75px">启动</th>
-                                    {#                                    <th width="75px">停止</th>#}
                                     <th width="75px">设置</th>
                                 </tr>
                                 </thead>
@@ -45,11 +44,6 @@
                                                     onclick="runspider(this)">启动
                                             </button>
                                         </td>
-                                        {#                                        <td>#}
-                                        {#                                            <button id="stopspider" class="btn btn-danger" href=""#}
-                                        {#                                                    onclick="stopspider(this)">停止#}
-                                        {#                                            </button>#}
-                                        {#                                        </td>#}
                                         <td>
                                             <button id="setspider" class="btn btn-primary" href="#"
                                                     onclick="setspider(this)">设置
@@ -134,7 +128,7 @@
                 title: '设置选项',
                 shadeClose: true,
                 shade: 0.8,
-                area: ['400px', '500px'],
+                area: ['500px', '300px'],
                 content: '/setspider/' //iframe的url
             });
         }
