@@ -216,7 +216,6 @@ def setspiderdata(request):
 def dataspider(request):
     keywords = []
     spiderdatas = []
-    cout = 1
     views = request.GET['view']
 
     conn = MySQLdb.connect(host="192.168.10.24",port=3306,user="root",passwd="root",charset="utf8")
@@ -228,10 +227,7 @@ def dataspider(request):
     for k in keyword:
         keywords.append(k[0])
     for datas in spiderdata:
-        # for data in datas:
-            # print data
             spiderdatas.append(datas)
-    # print spiderdatas
     cur.close()
     conn.close()
     return render(request,'dataspider.html',{'spiderdatas':spiderdatas,'keywords':keywords})
