@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^stopspider/',stopspider),
     url(r'^setspider/',setspider),
     url(r'^setspiderdata/',setspiderdata),
+    url(r'^dataspider/',dataspider),
 ]

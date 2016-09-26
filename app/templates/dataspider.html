@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="../static/assets/css/bootstrap.css">
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="../static/assets/css/bootstrap-theme.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="../static/assets/jquery-1.9.1.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="../static/assets/js/bootstrap.min.js"></script>
+
+    <title>spider数据</title>
+</head>
+<body>
+<div class="table-responsive">
+    <table class="table table-bordered" width="50%">
+        <thead>
+        <tr>
+            {% for keyword in keywords %}
+                <th>{{ keyword }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        {% for datas in spiderdatas %}
+            <tr>
+                {% for data in datas %}
+                    <td>
+                        {{ data }}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+</div>
+</body>
+</html>

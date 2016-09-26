@@ -29,9 +29,6 @@
                                     <th>爬虫名称</th>
                                     <th>Job ID</th>
                                     <th>开始时间</th>
-                                    <th>结束时间</th>
-                                    <th>日志</th>
-                                    <th>Items</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -66,9 +63,7 @@
                                     <th>爬虫名称</th>
                                     <th>Job ID</th>
                                     <th>开始时间</th>
-                                    <th>停止</th>
-                                    <th>日志</th>
-                                    <th>Items</th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -109,7 +104,6 @@
                                     <th>Job ID</th>
                                     <th>开始时间</th>
                                     <th>结束时间</th>
-                                    <th>日志</th>
                                     <th>Items</th>
                                 </tr>
                                 </thead>
@@ -119,6 +113,11 @@
                                         {% for finished in trs %}
                                             <td>{{ finished }}</td>
                                          {% endfor %}
+                                        <td>
+                                            <button id="dataspider" class="btn btn-info" href=""
+                                                    onclick="dataspider(this)">数据
+                                            </button>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -161,4 +160,33 @@
                     });//这里返回的类型有：json,html,xml,text
         }
     </script>
+    <script type="text/javascript">
+        function dataspider(o) {
+            var tds = $(o).parent().parent().find("td");
+            var c1, c2;
+            $(tds).each(function (i, td) {
+                if (i == 1) {
+                    c1 = $(this).html();
+                } else if (i == 2) {
+                    c2 = $(this).html();
+                }else if (i == 3) {
+                    c3 = $(this).html();
+                }
+            });
+{#            var http = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');#}
+            var name = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var spidername = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+{#            var dataview = http+"|" + name;#}
+            $.get("/dataspider/", {'view': spidername },
+                    function (data) {
+                        layer.alert(data,{
+                        skin : 'layer-ext-myskin',
+                        btn:'',
+                        title:'数据视图',
+                        area: ['80%', '80%']
+                        });
+                    });//这里返回的类型有：json,html,xml,text
+        }
+    </script>
+
 {% endblock %}

@@ -16,9 +16,11 @@ import os
 import djcelery
 
 #加入消息任务队列
-djcelery. setup_loader ( )
+djcelery.setup_loader()
+#中间人数据库
 BROKER_URL = 'django://'
-
+#设置异步任务时区
+CELERY_TIMEZONE='Asia/Shanghai'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -48,7 +50,7 @@ INSTALLED_APPS = [
     'app',
     #异步消息队列模块
     'djcelery',
-     'kombu.transport.django' ,
+    'kombu.transport.django' ,
 ]
 
 MIDDLEWARE = [
@@ -117,7 +119,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE='Asia/Shanghai'
+
 
 USE_I18N = True
 

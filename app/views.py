@@ -2,12 +2,13 @@
 #! /usr/bin/env python
 
 from django.shortcuts import render
-import requests
-import json
+from app.tasks import setspidertask
 from SpiderStarts.settings import conf
 from django.http import HttpResponse
-import os
-from app.tasks import add
+import os,time,requests,json,MySQLdb,re
+from datetime import datetime
+
+
 
 
 def index(request):
@@ -171,6 +172,7 @@ def stopspider(request):
         status=u'停止异常!'
     return HttpResponse(u"停止状态:%s"%(status))
 
+#spider调度设置页面
 def setspider(request):
     https = []
 
@@ -178,20 +180,58 @@ def setspider(request):
         https.append(c['http'])
     return render(request,"setspider.html",{'https':https})
 
+#spider调度异步设置
 def setspiderdata(request):
 
-    scrapyname = request.POST['scrapyname']
-    optionsRadiosinline = request.POST['optionsRadiosinline']
+    #项目名称
+    projectname = request.POST['projectname']
+    #分发服务器地址
     taskhttp = request.POST['taskhttp']
-    one = request.POST['one']
-    time = request.POST['time']
 
-    print scrapyname
-    print optionsRadiosinline
-    print taskhttp
-    print one
-    print time
+    #单选框
+    radio = request.POST['optionsRadiosinline']
 
-    a = add.delay(2,5)
-    print "a+b:%s"%a.result
-    return HttpResponse(u"设置成功!%s"%a.result)
+    #单次或者每次
+    try:
+        one = request.POST['one']
+    except:
+        one = 'false'
+
+    today = request.POST['time']
+
+    if today =='':
+        today = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
+
+    print "projectname:%s"%projectname
+    print "taskhttp:%s"%taskhttp
+    print "radio:%s"%radio
+    print "one:%s"%one
+    print "today:%s"%today
+
+    setspidertask.delay(projectname,taskhttp,radio,one,today)
+
+    return HttpResponse(u"设置成功!")
+
+#数据视图
+def dataspider(request):
+    keywords = []
+    spiderdatas = []
+    cout = 1
+    views = request.GET['view']
+
+    conn = MySQLdb.connect(host="192.168.10.24",port=3306,user="root",passwd="root",charset="utf8")
+    cur  =conn.cursor()
+    cur.execute("SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = '{}' AND table_schema = 'yqapp'".format(views))
+    keyword = cur.fetchall()
+    cur.execute("SELECT * FROM yqapp.{} LIMIT 10".format(views))
+    spiderdata = cur.fetchall()
+    for k in keyword:
+        keywords.append(k[0])
+    for datas in spiderdata:
+        # for data in datas:
+            # print data
+            spiderdatas.append(datas)
+    # print spiderdatas
+    cur.close()
+    conn.close()
+    return render(request,'dataspider.html',{'spiderdatas':spiderdatas,'keywords':keywords})
