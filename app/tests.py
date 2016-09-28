@@ -2,6 +2,7 @@
 #! /usr/bin/env python
 import os
 
+#实现统计代码行
 def browseFiles(path):
     count = 0
     files = os.listdir(path)
@@ -24,4 +25,4 @@ def countLines(path):
     f.close()
     return lineNum
 
-print browseFiles(r"E:\SpiderStarts")
+# print browseFiles(r"E:\SpiderStarts")
