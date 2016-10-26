@@ -1,0 +1,45 @@
+{% extends 'base_configs.html' %}
+{% block content %}
+    <div id="page-wrapper">
+        <div class="header">
+            <h1 class="page-header">
+                爬虫规则文件
+                <small>欢迎查看</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/spiderconfigs/">主页</a></li>
+                <li><a href="/spiderconfigs/">配置详情</a></li>
+                <li class="active">详情</li>
+            </ol>
+            <div class="panel panel-primary">
+                <div class="panel-heading">详情内容规则配置</div>
+                <form>
+                    <table class="table">
+                        <tr>
+                            <div class="row">
+                                <td class="col-sm-1 col-md-1">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">字段名：</span>
+                                        <input type="text" class="form-control" placeholder="字段名">
+                                    </div>
+                                </td>
+                                <td class="col-sm-4 col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">xpath：</span>
+                                        <input type="text" class="form-control" placeholder="xpath表达式">
+                                    </div>
+                                </td>
+                            </div>
+                        </tr>
+                    </table>
+                    <div class="container">
+                        <button type="button" class="btn btn-default btn-lg">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

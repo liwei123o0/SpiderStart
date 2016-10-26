@@ -14,7 +14,7 @@
     <!-- Custom Styles-->
     <link href="../static/assets/css/custom-styles.css" rel="stylesheet"/>
     <!-- Google Fonts-->
-{#    <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>#}
+    {#    <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>#}
     <link rel="stylesheet" href="../static/assets/js/Lightweight-Chart/cssCharts.css">
     <title>分布式爬虫管理监控系统</title>
     {% block head %}
@@ -33,6 +33,13 @@
                 </button>
                 <a class="navbar-brand" href="/"><strong><i class="icon fa fa-plane"></i> 分布式采集系统</strong></a>
             </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">爬虫项目管理</a></li>
+                    <li><a href="/spiderconfigs/" style="color: #4D4D4D">爬虫规则管理</a></li>
+                    <li><a href="#" style="color: #4D4D4D">爬虫性能监控</a></li>
+                </ul>
+            </div>
         </nav>
     {% endblock %}
     <!--/. NAV TOP  -->
@@ -41,17 +48,14 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li>
-                        <a href="/"><i class="fa fa-dashboard"></i>
-                            爬虫概况</a>
+                        <a href="#"><i class="fa fa-dashboard"></i>
+                            配置文件</a>
                     </li>
                     <li>
-                        <a href="/spiderjob/"><i class="fa fa-desktop"></i>爬虫工作台</a>
+                        <a href="/spiderconfigs/"><i class="fa fa-desktop"></i>连接规则配置</a>
                     </li>
                     <li>
-                        <a href="/spiderstatus/"><i class="fa fa-sitemap"></i>任务状态</a>
-                    </li>
-                    <li>
-                        <a href="tab-panel.html"><i class="fa fa-qrcode"></i>状态监测</a>
+                        <a href="#"><i class="fa fa-sitemap"></i>详情规则配置</a>
                     </li>
                 </ul>
             </div>
@@ -84,11 +88,12 @@
 <script type="text/javascript" src="../static/assets/js/chart.min.js"></script>
 <script type="text/javascript" src="../static/assets/js/chartjs.js"></script>
 <style type="text/css">
-        <!-- -->
-        body{
-            font-family: '微软雅黑';
-            font-size: 18px;
-        }
+    <!--
+    -->
+    body {
+        font-family: '微软雅黑';
+        font-size: 18px;
+    }
 </style>
 {% block script %}
 

@@ -21,6 +21,7 @@ from app.views import *
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
+    #爬虫管理页面连接
     url(r'^$',index),
     url(r'^spiderjob/',spiderjob),
     url(r'^spiderstatus/',spiderstatus),
@@ -29,4 +30,7 @@ urlpatterns = [
     url(r'^setspider/',setspider),
     url(r'^setspiderdata/',setspiderdata),
     url(r'^dataspider/',dataspider),
+    #爬虫规则管理连接
+    url(r'^spiderconfigs/',spiderconfigs),
+
 ]

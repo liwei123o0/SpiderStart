@@ -231,3 +231,8 @@ def dataspider(request):
     cur.close()
     conn.close()
     return render(request,'dataspider.html',{'spiderdatas':spiderdatas,'keywords':keywords})
+
+
+def spiderconfigs(request):
+
+    return render(request,'spiderconfigs.html')
