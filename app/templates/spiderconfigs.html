@@ -11,7 +11,7 @@
                 <li><a href="/spiderconfigs/">配置详情</a></li>
                 <li class="active">详情</li>
             </ol>
-            <form>
+            <form action="/configstomysql/" method="POST">
                 {% csrf_token %}
                 <div class="panel panel-primary">
                     <div class="panel-heading">基本配置设置</div>
@@ -21,19 +21,21 @@
                                 <td class="col-sm-1 col-md-1">
                                     <div class="input-group">
                                         <span class="input-group-addon">爬虫名：</span>
-                                        <input type="text" class="form-control" placeholder="spidername">
+                                        <input type="text" class="form-control" placeholder="spidername"
+                                               name="spidername">
                                     </div>
                                 </td>
                                 <td class="col-sm-1 col-md-1">
                                     <div class="input-group">
                                         <span class="input-group-addon">域名：</span>
-                                        <input type="text" class="form-control" placeholder="domain">
+                                        <input type="text" class="form-control" placeholder="domain" name="domain">
                                     </div>
                                 </td>
                                 <td class="col-sm-1 col-md-1">
                                     <div class="input-group">
                                         <span class="input-group-addon">爬虫类型：</span>
-                                        <input type="text" class="form-control" placeholder="spidertype">
+                                        <input type="text" class="form-control" placeholder="spidertype"
+                                               name="spidertype">
                                     </div>
                                 </td>
                             </div>
@@ -43,13 +45,13 @@
                                 <td class="col-sm-1 col-md-1">
                                     <div class="input-group">
                                         <span class="input-group-addon">网站名：</span>
-                                        <input type="text" class="form-control" placeholder="site">
+                                        <input type="text" class="form-control" placeholder="site" name="site">
                                     </div>
                                 </td>
                                 <td class="col-sm-1 col-md-1">
                                     <div class="input-group">
                                         <span class="input-group-addon">入口地址：</span>
-                                        <input type="text" class="form-control" placeholder="URL">
+                                        <input type="text" class="form-control" placeholder="listURL" name="listurl">
                                     </div>
                                 </td>
                             </div>
@@ -64,7 +66,7 @@
                                 <td class="col-sm-1 col-md-1">
                                     <div class="input-group">
                                         <span class="input-group-addon">详情列表：</span>
-                                        <input type="text" class="form-control" placeholder="xpath表达式">
+                                        <input type="text" class="form-control" placeholder="xpath表达式" name="listxpath">
                                     </div>
                                 </td>
                             </div>
@@ -74,7 +76,7 @@
                                 <td class="col-sm-1 col-md-1">
                                     <div class="input-group">
                                         <span class="input-group-addon">翻页规则：</span>
-                                        <input type="text" class="form-control" placeholder="xpath表达式">
+                                        <input type="text" class="form-control" placeholder="xpath表达式" name="pagexpath">
                                     </div>
                                 </td>
                             </div>
@@ -94,7 +96,7 @@
                             </button>
                         </div>
                     </div>
-                    <div style="overflow:scroll; height:300px;">
+                    <div style="overflow:auto; height:300px;">
                         <table class="table table-hover" id="addTr">
                             <tr class="tr0">
                                 <div class="row">
@@ -116,6 +118,18 @@
                         </table>
                     </div>
                 </div>
+                <div style="text-align: center">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-success">
+                            保存
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="reset" class="btn btn-info">
+                            清空
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -131,6 +145,9 @@
         }
         function removeTr() {
             var rows = document.getElementById("addTr").rows.length - 1;
+            if (rows + 1 == 0) {
+                alert("无表单!")
+            }
             $(".tr" + rows).remove()
         }
     </script>

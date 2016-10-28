@@ -32,5 +32,6 @@ urlpatterns = [
     url(r'^dataspider/',dataspider),
     #爬虫规则管理连接
     url(r'^spiderconfigs/',spiderconfigs),
+    url(r'^configstomysql/',configstomysql),
 
 ]
