@@ -10,7 +10,6 @@ from datetime import datetime
 
 
 
-
 def index(request):
     listprojects = 0
     listspiders =0

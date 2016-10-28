@@ -1,6 +1,6 @@
 {% extends 'base_configs.html' %}
 {% block content %}
-    <div id="page-wrapper">
+    <div id="page-wrapper" xmlns:http="http://www.w3.org/1999/xhtml">
         <div class="header">
             <h1 class="page-header">
                 爬虫规则文件
@@ -11,35 +11,127 @@
                 <li><a href="/spiderconfigs/">配置详情</a></li>
                 <li class="active">详情</li>
             </ol>
-            <div class="panel panel-primary">
-                <div class="panel-heading">详情内容规则配置</div>
-                <form>
+            <form>
+                {% csrf_token %}
+                <div class="panel panel-primary">
+                    <div class="panel-heading">基本配置设置</div>
                     <table class="table">
                         <tr>
                             <div class="row">
                                 <td class="col-sm-1 col-md-1">
                                     <div class="input-group">
-                                        <span class="input-group-addon">字段名：</span>
-                                        <input type="text" class="form-control" placeholder="字段名">
+                                        <span class="input-group-addon">爬虫名：</span>
+                                        <input type="text" class="form-control" placeholder="spidername">
                                     </div>
                                 </td>
-                                <td class="col-sm-4 col-md-4">
+                                <td class="col-sm-1 col-md-1">
                                     <div class="input-group">
-                                        <span class="input-group-addon">xpath：</span>
+                                        <span class="input-group-addon">域名：</span>
+                                        <input type="text" class="form-control" placeholder="domain">
+                                    </div>
+                                </td>
+                                <td class="col-sm-1 col-md-1">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">爬虫类型：</span>
+                                        <input type="text" class="form-control" placeholder="spidertype">
+                                    </div>
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="row">
+                                <td class="col-sm-1 col-md-1">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">网站名：</span>
+                                        <input type="text" class="form-control" placeholder="site">
+                                    </div>
+                                </td>
+                                <td class="col-sm-1 col-md-1">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">入口地址：</span>
+                                        <input type="text" class="form-control" placeholder="URL">
+                                    </div>
+                                </td>
+                            </div>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">连接规则设置</div>
+                    <table class="table">
+                        <tr>
+                            <div class="row">
+                                <td class="col-sm-1 col-md-1">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">详情列表：</span>
+                                        <input type="text" class="form-control" placeholder="xpath表达式">
+                                    </div>
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="row">
+                                <td class="col-sm-1 col-md-1">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">翻页规则：</span>
                                         <input type="text" class="form-control" placeholder="xpath表达式">
                                     </div>
                                 </td>
                             </div>
                         </tr>
                     </table>
-                    <div class="container">
-                        <button type="button" class="btn btn-default btn-lg">
-                            <span class="glyphicon glyphicon-plus-sign"></span>
-                        </button>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">详情内容规则配置
+                        <div class="btn-group" style="float: right">
+                            <button type="button" class="btn btn-danger" onclick="removeTr()">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                        </div>
+                        <div class="btn-group" style="float: right">
+                            <button type="button" class="btn btn-success" onclick="append()">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
                     </div>
-                </form>
-            </div>
+                    <div style="overflow:scroll; height:300px;">
+                        <table class="table table-hover" id="addTr">
+                            <tr class="tr0">
+                                <div class="row">
+                                    <td class="col-sm-1 col-md-1">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">字段名：</span>
+                                            <input type="text" class="form-control" placeholder="字段名" name="field0">
+                                        </div>
+                                    </td>
+                                    <td class="col-sm-4 col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">xpath：</span>
+                                            <input type="text" class="form-control" placeholder="xpath表达式"
+                                                   name="xpath0">
+                                        </div>
+                                    </td>
+                                </div>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-
+{% endblock %}
+{% block script %}
+    <script src="../static/assets/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        function append() {
+            var rows = document.getElementById("addTr").rows.length;
+            var strAppend = '<tr class="tr' + rows + '"> <div class="row"> <td class="col-sm-1 col-md-1"> <div class="input-group"><span class="input-group-addon">字段名：</span><input type="text" class="form-control" placeholder="字段名" name="field' + rows + '"></div></td>' +
+                    '<td class="col-sm-4 col-md-4"><div class="input-group"><span class="input-group-addon">xpath：</span><input type="text" class="form-control" placeholder="xpath表达式" name="xpath' + rows + '"></div></td> </div> </tr>';
+            $("#addTr").append(strAppend).editableTableWidget();
+        }
+        function removeTr() {
+            var rows = document.getElementById("addTr").rows.length - 1;
+            $(".tr" + rows).remove()
+        }
+    </script>
 {% endblock %}
