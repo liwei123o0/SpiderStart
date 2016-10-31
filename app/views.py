@@ -258,44 +258,30 @@ def spiderconfigs(request):
 
 # 配置文件存储在到mysql库
 def configstomysql(request):
-    # #爬虫名称
-    # spidername = request.POST['spidername']
-    # #爬虫域名
-    # domain = request.POST['domain']
-    # #爬虫类型
-    # spidertype = request.POST['spidertype']
-    # #网站名
-    # site = request.POST['site']
-    # #入口连接
-    # listURL = request.POST['listurl']
-    # #频道链接规则
-    # listxpath = request.POST['listxpath']
-    # #翻页规则
-    # pagexpath = request.POST['pagexpath']
-
-    # 内容数据
+    # 获取配置文件内容数据
     configs = request.POST
-    # print spidername
-    # print domain
-    # print spidertype
-    # print site
-    # print listURL
-    # print listxpath
-    # print pagexpath
 
     conn = MySQLdb.connect(host="192.168.10.24", port=3306, user="root", passwd="root", charset="utf8")
     cur = conn.cursor()
 
-    for k, v in configs.items():
-        if v == '' or k == 'csrfmiddlewaretoken':
-            continue
+    # 写入mysql数据库
+    try:
 
-        # print "INSERT INTO yqapp.configs(%s) VALUES ('%s')" % (k, v)
-        try:
-            cur.execute("INSERT INTO yqapp.configs(%s) VALUES ('%s')" % (k, v))
-        except:
-            print "%s:%s" % (k, v)
+        cur.execute(
+            "INSERT INTO yqapp.configs(spidername,domain,spidertype,site,listurl,listxpath,pagexpath) \
+    VALUES ('%s','%s','%s','%s','%s','%s','%s')" \
+            % (configs['spidername'], configs['domain'], configs['spidertype'], configs['site'], configs['listurl'],
+               configs['listxpath'], configs['pagexpath'],))
         conn.commit()
+
+    except:
+        return HttpResponse(u"已存在'%s'为名称的配置文件" % (configs['spidername']))
+
+    keys =  configs.keys()
+    print keys
+
+
+
     cur.close()
     conn.close()
     return HttpResponse(u"提交成功!")
