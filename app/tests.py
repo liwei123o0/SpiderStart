@@ -26,3 +26,8 @@ def countLines(path):
     return lineNum
 
 # print browseFiles(r"E:\SpiderStarts")
+
+conf = {1: (u'baidu', u'\u767e\u5ea6\u65b0\u95fb', u'\u65b0\u95fb', u'http://www.baidu.com'),2: (u'baidu', u'\u767e\u5ea6\u65b0\u95fb', u'\u65b0\u95fb', u'http://www.baidu.com')}
+for i in conf.items():
+    for j in  i:
+        print j

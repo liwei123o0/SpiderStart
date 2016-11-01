@@ -6,7 +6,7 @@ from app.tasks import setspidertask
 from SpiderStarts.settings import conf
 from django.http import HttpResponse
 import os, time, requests, json, MySQLdb, re
-from datetime import datetime
+from MySQLdb.cursors import DictCursor
 
 
 def index(request):
@@ -276,12 +276,31 @@ def configstomysql(request):
 
     except:
         return HttpResponse(u"已存在'%s'为名称的配置文件" % (configs['spidername']))
-
-    keys =  configs.keys()
-    print keys
-
-
+    # 格式化内容规则字段
+    keys = configs.keys()
+    f = re.findall(r'field\d+', str(keys))
+    for i in xrange(len(f)):
+        if configs['field%s' % i] == '' or configs['xpath%s' % i] == '':
+            continue
+        cur.execute(
+            "UPDATE yqapp.configs SET %s='%s' WHERE spidername='%s'" % (
+                configs['field%s' % i], configs['xpath%s' % i], configs['spidername']))
+        conn.commit()
 
     cur.close()
     conn.close()
     return HttpResponse(u"提交成功!")
+
+
+# 配置文件展示
+def configfile(request):
+    #cursorclass参数查询返回字典格式
+    conn = MySQLdb.connect(host="192.168.10.24", port=3306, user="root", passwd="root", charset="utf8",
+                           cursorclass=DictCursor)
+    cur = conn.cursor()
+    cur.execute("SELECT spidername,site,spidertype,listurl FROM yqapp.configs")
+    keyword = cur.fetchall()
+    cur.close()
+    conn.close()
+    keywords = list(keyword)
+    return render(request, 'configfile.html', {'keywords':keywords})

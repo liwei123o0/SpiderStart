@@ -1,0 +1,51 @@
+{% extends 'base_configs.html' %}
+{% block content %}
+    <div id="page-wrapper" xmlns:http="http://www.w3.org/1999/xhtml">
+        <div class="header">
+            <h1 class="page-header">
+                配置文件列表
+                <small>欢迎查看</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/spiderconfigs/">主页</a></li>
+                <li><a href="/configfile/">配置列表</a></li>
+                <li class="active">详情</li>
+            </ol>
+            <div class="panel panel-success">
+                <div class="panel-heading">配置详情</div>
+                <div class="panel-body">
+                    <p>暂定</p>
+                </div>
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>
+                            入口地址
+                        </th>
+                        <th>
+                            采集类型
+                        </th>
+                        <th>
+                            爬虫名
+                        </th>
+                        <th>
+                            网站名
+                        </th>
+                    </tr>
+                    </thead>
+                    {% for key in keywords %}
+                        <tr>
+                            {% for v in key.values %}
+                                <td>
+                                {{ v }}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

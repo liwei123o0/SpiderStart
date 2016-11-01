@@ -33,5 +33,6 @@ urlpatterns = [
     #爬虫规则管理连接
     url(r'^spiderconfigs/',spiderconfigs),
     url(r'^configstomysql/',configstomysql),
+    url(r'^configfile/',configfile),
 
 ]
