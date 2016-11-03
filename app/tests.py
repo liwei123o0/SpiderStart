@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-#! /usr/bin/env python
+# ! /usr/bin/env python
 import os
 
-#实现统计代码行
+
+# 实现统计代码行
 def browseFiles(path):
     count = 0
     files = os.listdir(path)
@@ -13,6 +14,7 @@ def browseFiles(path):
             count += browseFiles(path + '\\' + item)
     return count
 
+
 def countLines(path):
     if path.find('.cs') == -1:
         return 0
@@ -21,13 +23,16 @@ def countLines(path):
     lineNum = 0
     f = open(path, 'r')
     for count, line in enumerate(f):
-                lineNum += 1
+        lineNum += 1
     f.close()
     return lineNum
 
+
 # print browseFiles(r"E:\SpiderStarts")
 
-conf = {1: (u'baidu', u'\u767e\u5ea6\u65b0\u95fb', u'\u65b0\u95fb', u'http://www.baidu.com'),2: (u'baidu', u'\u767e\u5ea6\u65b0\u95fb', u'\u65b0\u95fb', u'http://www.baidu.com')}
-for i in conf.items():
-    for j in  i:
-        print j
+# conf = {1: (u'baidu', u'\u767e\u5ea6\u65b0\u95fb', u'\u65b0\u95fb', u'http://www.baidu.com'),
+#         2: (u'baidu', u'\u767e\u5ea6\u65b0\u95fb', u'\u65b0\u95fb', u'http://www.baidu.com')}
+# for i in conf.items():
+#     for j in i:
+#         print j
+

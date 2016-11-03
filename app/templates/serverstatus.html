@@ -1,0 +1,45 @@
+{% extends 'base_stats.html' %}
+{% block content %}
+    <div id="page-wrapper" xmlns:http="http://www.w3.org/1999/xhtml">
+        <div class="header">
+            <h1 class="page-header">
+                系统性能
+                <small>欢迎查看</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/serverstatus/">主页</a></li>
+                <li><a href="/serverstatus/">系统性能</a></li>
+                <li class="active">详情</li>
+            </ol>
+            <div id="main" style="width: 600px;height:400px;">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        option = {
+            tooltip: {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            series: [
+                {
+                    name: '业务指标',
+                    type: 'gauge',
+                    detail: {formatter: '{value}%'},
+                    data: [{value: 50, name: 'CPU使用率'}]
+                }
+            ]
+        };
+
+
+        setInterval(function () {
+                option.series[0].data[0].value = 60;
+                myChart.setOption(option);
+        }, 1000);
+    </script>
+{% endblock %}

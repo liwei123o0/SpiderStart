@@ -34,5 +34,6 @@ urlpatterns = [
     url(r'^spiderconfigs/',spiderconfigs),
     url(r'^configstomysql/',configstomysql),
     url(r'^configfile/',configfile),
+    url(r'^serverstatus/',serverstatus),
 
 ]

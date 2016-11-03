@@ -5,7 +5,7 @@ from django.shortcuts import render
 from app.tasks import setspidertask
 from SpiderStarts.settings import conf
 from django.http import HttpResponse
-import os, time, requests, json, MySQLdb, re
+import os, time, requests, json, MySQLdb, re, wmi
 from MySQLdb.cursors import DictCursor
 
 
@@ -294,7 +294,7 @@ def configstomysql(request):
 
 # 配置文件展示
 def configfile(request):
-    #cursorclass参数查询返回字典格式
+    # cursorclass参数查询返回字典格式
     conn = MySQLdb.connect(host="192.168.10.24", port=3306, user="root", passwd="root", charset="utf8",
                            cursorclass=DictCursor)
     cur = conn.cursor()
@@ -303,4 +303,9 @@ def configfile(request):
     cur.close()
     conn.close()
     keywords = list(keyword)
-    return render(request, 'configfile.html', {'keywords':keywords})
+    return render(request, 'configfile.html', {'keywords': keywords})
+
+
+def serverstatus(request):
+
+    return render(request, 'serverstatus.html')
