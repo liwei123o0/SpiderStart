@@ -4,7 +4,6 @@
         <div class="header">
             <h1 class="page-header">
                 配置文件列表
-                <small>欢迎查看</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="/spiderconfigs/">主页</a></li>
@@ -12,33 +11,35 @@
                 <li class="active">详情</li>
             </ol>
             <div class="panel panel-success">
-                <div class="panel-heading">配置详情</div>
-                <div class="panel-body">
-                    <p>暂定</p>
+                <div class="panel-heading green">
+                    <p class="img-rounded green"> 配置详情</p>
                 </div>
-
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th>
+                        <th width="4%">
+                            序号
+                        </th>
+                        <th width="35%">
                             入口地址
                         </th>
-                        <th>
+                        <th width="20%">
                             采集类型
                         </th>
-                        <th>
+                        <th width="20%">
                             爬虫名
                         </th>
-                        <th>
+                        <th width="20%">
                             网站名
                         </th>
                     </tr>
                     </thead>
                     {% for key in keywords %}
                         <tr>
+                            <td></td>
                             {% for v in key.values %}
                                 <td>
-                                {{ v }}
+                                    {{ v }}
                                 </td>
                             {% endfor %}
                         </tr>
@@ -48,4 +49,15 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block script %}
+    <script src="../static/assets/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var len = $('table tr').length;
+            for (var i = 1; i < len; i++) {
+                $('table tr:eq(' + i + ') td:first').text(i);
+            }
+        });
+    </script>
 {% endblock %}

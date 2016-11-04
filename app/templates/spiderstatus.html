@@ -4,19 +4,17 @@
         <div class="header">
             <h1 class="page-header">
                 爬虫项目概况
-                <small>欢迎查看</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="/">主页</a></li>
                 <li><a href="/spiderstatus/">任务状态</a></li>
                 <li class="active">详情</li>
             </ol>
-        </div>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <p class="bg-info img-rounded">&nbsp;&nbsp;&nbsp;爬虫任务等待</p>
+                        <p class="bg-info img-rounded yellow">&nbsp;&nbsp;&nbsp;爬虫任务等待</p>
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -90,7 +88,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <p class="bg-success  img-rounded">&nbsp;&nbsp;&nbsp;爬虫完成状态</p>
+                        <p class="bg-success  img-rounded green">&nbsp;&nbsp;&nbsp;爬虫完成状态</p>
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -127,6 +125,10 @@
                 </div>
             </div>
         </div>
+        </div>
+
+
+
 {% endblock %}
 {% block script %}
     <script src="../static/assets/jquery-1.9.1.min.js"></script>
