@@ -309,5 +309,8 @@ def configfile(request):
     return render(request, 'configfile.html', {'keywords': keywords})
 
 
-def serverstatus(request):
-    return render(request, 'serverstatus.html')
+def servercpu(request):
+    return render(request, 'servercpu.html')
+
+def serverSQL(request):
+    return render(request, 'serverSQL.html')
