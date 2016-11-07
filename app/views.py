@@ -49,6 +49,7 @@ def index(request):
     try:
         project = json.loads(requests.get("http://192.168.10.24:6800/daemonstatus.json", timeout=1).content)
         status = project['status']
+
     except:
         status = 'no'
         running = u"未知"
@@ -175,7 +176,7 @@ def runspider(request):
     return HttpResponse(u"启动状态:%s!<br>任务ID:%s" % (status, jobid))
 
 
-# 管局指定参数停止指定爬虫并返回状态
+# 管理指定参数停止指定爬虫并返回状态
 def stopspider(request):
     stop = request.GET['stopspider']
     stopcrawl = json.loads(os.popen("curl %s" % (stop), 'r').read())
@@ -230,25 +231,28 @@ def setspiderdata(request):
 
 # 数据视图
 def dataspider(request):
-    keywords = []
-    spiderdatas = []
-    views = request.GET['view']
-
-    conn = MySQLdb.connect(host="192.168.10.24", port=3306, user="root", passwd="root", charset="utf8")
+    # views = request.GET['view']
+    conn = MySQLdb.connect(host="192.168.10.24", port=3306, user="root", passwd="root", charset="utf8",
+                           cursorclass=DictCursor)
     cur = conn.cursor()
-    cur.execute(
-        "SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = '{}' AND table_schema = 'yqapp'".format(
-            views))
-    keyword = cur.fetchall()
-    cur.execute("SELECT * FROM yqapp.{} LIMIT 10".format(views))
-    spiderdata = cur.fetchall()
-    for k in keyword:
-        keywords.append(k[0])
-    for datas in spiderdata:
-        spiderdatas.append(datas)
+    # 根据表明查字段
+    # cur.execute(
+    #     "SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = '{}' AND table_schema = 'yqapp'".format(
+    #         views))
+    # cur.execute(
+    #     "SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'zbxx' AND table_schema = 'yqapp'")
+    # keyword = cur.fetchall()
+    # cur.execute("SELECT * FROM yqapp.{} LIMIT 10".format(views))
+    cur.execute("SELECT * FROM yqapp.zbxx LIMIT 10")
+    spiderdatas = cur.fetchall()
+    # print spiderdata
+    # for k in keyword:
+    #     keywords.append(k[0])
+    # for datas in spiderdata:
+    #     spiderdatas.append(datas)
     cur.close()
     conn.close()
-    return render(request, 'dataspider.html', {'spiderdatas': spiderdatas, 'keywords': keywords})
+    return render(request, 'dataspider.html', {'spiderdatas': spiderdatas})
 
 
 # 配置文件设置
@@ -266,7 +270,6 @@ def configstomysql(request):
 
     # 写入mysql数据库
     try:
-
         cur.execute(
             "INSERT INTO yqapp.configs(spidername,domain,spidertype,site,listurl,listxpath,pagexpath) \
     VALUES ('%s','%s','%s','%s','%s','%s','%s')" \
@@ -307,5 +310,4 @@ def configfile(request):
 
 
 def serverstatus(request):
-
     return render(request, 'serverstatus.html')

@@ -33,7 +33,7 @@
                                 {% for trs in pendings %}
                                     <tr>
                                         {% for pending in trs %}
-                                            <td>{{ pending }}</td>
+                                            <td>{{ pending|safe }}</td>
                                          {% endfor %}
                                     </tr>
                                 {% endfor %}
@@ -68,7 +68,7 @@
                                 {% for trs in runnings %}
                                     <tr>
                                         {% for running in trs %}
-                                            <td>{{ running }}</td>
+                                            <td>{{ running|safe }}</td>
                                          {% endfor %}
                                         <td>
                                             <button id="stopspider" class="btn btn-danger" href=""
@@ -109,7 +109,7 @@
                                 {% for trs in finishes %}
                                     <tr>
                                         {% for finished in trs %}
-                                            <td>{{ finished }}</td>
+                                            <td>{{ finished|safe }}</td>
                                          {% endfor %}
                                         <td>
                                             <button id="dataspider" class="btn btn-info" href=""
@@ -179,7 +179,8 @@
             var name = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
             var spidername = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
 {#            var dataview = http+"|" + name;#}
-            $.get("/dataspider/", {'view': spidername },
+{#            $.get("/dataspider/", {'view': spidername }, #}
+            $.get("/dataspider/",
                     function (data) {
                         layer.alert(data,{
                         skin : 'layer-ext-myskin',

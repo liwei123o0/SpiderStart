@@ -10,16 +10,13 @@
                 <li><a href="#">爬虫概况</a></li>
                 <li class="active">详情</li>
             </ol>
-        </div>
-        <div id="page-inner">
-            <!-- /. ROW  -->
             <div class="row">
                 <div class="col-md-3 col-sm-12 col-xs-12">
-                    <div class="board" >
+                    <div class="board">
                         <div class="panel panel-primary red">
                             <div class="number">
                                 <h3>
-{#                                    <h3 style="color: #FFFFFF">{{ projects }}</h3>#}
+                                    {#                                    <h3 style="color: #FFFFFF">{{ projects|safe }}</h3>#}
                                     <h3 style="color: #FFFFFF">17</h3>
                                     <small style="color: #FFFFFF">项目版本数</small>
                                 </h3>
@@ -35,7 +32,7 @@
                         <div class="panel panel-primary blue">
                             <div class="number">
                                 <h3>
-{#                                    <h3 style="color: #FFFFFF">{{ spiders }}</h3>#}
+                                    {#                                    <h3 style="color: #FFFFFF">{{ spiders|safe }}</h3>#}
                                     <h3 style="color: #FFFFFF">1056</h3>
                                     <small style="color: #FFFFFF">爬虫总数</small>
                                 </h3>
@@ -46,13 +43,12 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-3 col-sm-12 col-xs-12">
                     <div class="board">
                         <div class="panel panel-primary green">
                             <div class="number">
                                 <h3>
-{#                                    <h3 style="color: #FFFFFF">{{ running }}</h3>#}
+                                    {#                                    <h3 style="color: #FFFFFF">{{ running|safe }}</h3>#}
                                     <h3 style="color: #FFFFFF">35</h3>
                                     <small style="color: #FFFFFF">爬虫运行数</small>
                                 </h3>
@@ -64,13 +60,12 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-3 col-sm-12 col-xs-12">
                     <div class="board">
                         <div class="panel panel-primary yellow">
                             <div class="number">
                                 <h3>
-{#                                    <h3 style="color: #FFFFFF">{{ finished }}</h3>#}
+                                    {#                                    <h3 style="color: #FFFFFF">{{ finished|safe }}</h3>#}
                                     <h3 style="color: #FFFFFF">2136</h3>
                                     <small style="color: #FFFFFF">爬虫完成数</small>
                                 </h3>
@@ -82,12 +77,9 @@
                     </div>
                 </div>
             </div>
-            <!-- /. ROW  -->
-            <!-- /. ROW  -->
-            <footer>
-                <p>Copyright &copy; 2016西部资信
-            </footer>
         </div>
+        <footer>
+            <p>Copyright &copy; 2016西部资信
+        </footer>
     </div>
-        <!-- /. PAGE INNER  -->
 {% endblock %}

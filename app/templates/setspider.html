@@ -46,7 +46,7 @@
             <div class="col-xs-8">
                 <select class="form-control" name="taskhttp">
                     {% for http in https %}
-                        <option>{{ http }}</option>
+                        <option>{{ http|safe }}</option>
                     {% endfor %}
                 </select>
             </div>

@@ -34,7 +34,7 @@
                                         <tr>
                                             {% for c in cwls %}
                                                 <td>
-                                                    {{ c }}
+                                                    {{ c|safe }}
                                                 </td>
                                             {% endfor %}
                                             <td>

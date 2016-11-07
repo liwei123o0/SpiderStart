@@ -35,4 +35,28 @@ def countLines(path):
 # for i in conf.items():
 #     for j in i:
 #         print j
+import MySQLdb
+from MySQLdb.cursors import DictCursor
 
+conn = MySQLdb.connect(host="192.168.10.24", port=3306, user="root", passwd="root", charset="utf8",
+                       cursorclass=DictCursor)
+cur = conn.cursor()
+# cur.execute(
+#     "SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = '{}' AND table_schema = 'yqapp'".format(
+#         views))
+cur.execute(
+    "SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'zbxx' AND table_schema = 'yqapp'")
+keyword = cur.fetchall()
+# cur.execute("SELECT * FROM yqapp.{} LIMIT 10".format(views))
+cur.execute("SELECT * FROM yqapp.zbxx LIMIT 2")
+spiderdata = cur.fetchall()
+for s in spiderdata:
+    for k, v in s.items():
+        print "%s:%s" % (k, v)
+# print spiderdata
+# for k in keyword:
+#     keywords.append(k[0])
+# for datas in spiderdata:
+#     spiderdatas.append(datas)
+cur.close()
+conn.close()

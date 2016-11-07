@@ -15,28 +15,167 @@
     <script src="../static/assets/js/bootstrap.min.js"></script>
 
     <title>spider数据</title>
+    <style>
+        /*
+	cg 20161024
+	@查询详情页面
+	begin
+*/
+        .subkey-item-b {
+            background: transparent url("../img/table/item.png") no-repeat scroll center 0px;
+            height: 30px;
+            line-height: 30px;
+            width: 20px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            display: block;
+        }
+
+        .mao-list li > div {
+            border: 1px solid #9D9E9E;
+            position: relative;
+        }
+
+        .mao-list li > div > span.she a {
+            color: #9D9E9E;
+        }
+
+        .mao-list li > div.active {
+            border: 1px solid #0095D9;
+            position: relative;
+        }
+
+        .mao-list li > div.active > span.she a {
+            color: #0095D9;
+        }
+
+        .mao-list li > div.active > span.shee .subkey-item-b {
+            background: transparent url("../img/table/item.png") no-repeat scroll center -30px;
+        }
+
+        .sudoku_new {
+            background: #E4E4E4;
+            height: 40px;
+            line-height: 40px;
+            margin: 20px auto 0;
+            text-indent: 2em;
+            font-size: 16px;
+            font-weight: 800;
+            color: #333;
+        }
+
+        .sudoku_new_bt {
+            float: right;
+            margin-right: 20px;
+            font-weight: 300;
+            font-size: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            display: none;
+        }
+
+        .sudoku_new_bt.zk {
+            display: block;
+        }
+
+        .sudoku_new_body {
+            display: none;
+            padding: 14px 46px;
+            font-size: 14px;
+            line-height: 30px;
+            position: relative;
+            z-index: 2;
+            overflow: hidden
+        }
+
+        .watermark {
+            position: fixed;
+            z-index: -1;
+            top:0;
+            left: 0;
+            width: 100%;
+
+            background: url("../static/assets/img/aw.jpg") repeat;
+            height: 100%;
+        }
+
+        .sudoku_new_title {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .baseIfm-body {
+        }
+
+        .baseIfm-body {
+            /*margin: 20px -1px;*/
+            width: 100%;
+            border: 1px solid #CCCCCC;
+            cellspacing: 1;
+            cellpadding: 0;
+            clear: both;
+            text-align: center;
+        }
+
+        .baseIfm-body > tbody > tr > td {
+            border: 1px solid #cccccc;
+            height: 21px;
+            line-height: 21px;
+            padding: 5px 8px;
+            font-size: 14px;
+        }
+
+        .baseIfm-body > tbody > tr > td.frist {
+            width: 20%;
+        }
+
+        .baseIfm-body > tbody > tr > td.last {
+            width: 80%;
+        }
+
+        .bg-f2 {
+            background: #f2f2f2;
+            font-weight: 800;
+        }
+
+        .sudoku_new_clear {
+            padding: 10px 0;
+            border-bottom: 1px dashed #4BADD0;
+        }
+
+        .baseIfm-tle {
+            color: #333;
+            cursor: text;
+            text-decoration: none;
+        }
+        .t_right{
+            text-align: right;
+        }
+        .t_left{
+            text-align: left;
+        }
+        /*
+            cg 20161024
+            @查询详情页面
+            end
+        */
+    </style>
 </head>
 <body>
-<div class="table-responsive">
-    <table class="table table-bordered" width="50%">
-        <thead>
-        <tr>
-            {% for keyword in keywords %}
-                <th>{{ keyword }}</th>
+<div class="watermark"></div>
+{% for datas in spiderdatas %}
+    <div class="sudoku_new_clear" style="width: 90%;margin: 20px auto 20px;">
+        <table class="baseIfm-body" style="width: 95%;margin: 0 auto">
+            {% for k,v in datas.items %}
+                <tr>
+                    <td class="bg-f2 t_right frist">{{ k|safe }}</td>
+                    <td class="f-tal t_left last" colspan="3">{{ v|safe }}</td>
+                </tr>
             {% endfor %}
-        </tr>
-        </thead>
-        {% for datas in spiderdatas %}
-            <tr>
-                {% for data in datas %}
-                    <td>
-                        {{ data }}
-                    </td>
-                {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
-
-</div>
+        </table>
+    </div>
+{% endfor %}
 </body>
 </html>
