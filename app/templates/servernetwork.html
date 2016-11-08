@@ -1,0 +1,229 @@
+{% extends 'base_stats.html' %}
+{% block content %}
+    <div id="page-wrapper" xmlns:http="http://www.w3.org/1999/xhtml">
+        <div class="header">
+            <h1 class="page-header">
+                网络负载
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/">主页</a></li>
+                <li><a href="/servernetwork/">网络负载</a></li>
+                <li class="active">详情</li>
+            </ol>
+            <div class="panel panel-primary">
+                <div class="panel-heading">网络负载状态</div>
+                <div id="main" style="height: 500px;">
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">数据库网络负载</div>
+                <div id="main1" style="height: 500px;">
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">爬虫网络负载</div>
+                <div id="main2" style="height: 500px;">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'));
+        var myChart1 = echarts.init(document.getElementById('main1'));
+        var myChart2 = echarts.init(document.getElementById('main2'));
+
+        var oneDay = 1000;
+        var date = [];
+        var data = [Math.random() * 100];
+        var now = new Date();
+
+        var oneDay1 = 1000;
+        var now1 = new Date();
+        var date1 = [];
+        var data1 = [Math.random() * 100];
+
+        var now2 = new Date();
+        var oneDay2 = 1000;
+        var date2 = [];
+        var data2 = [Math.random() * 100];
+
+        function addData(shift) {
+            timenow = [now.getHours(), now.getMinutes(), now.getSeconds()].join(":");
+            date.push(timenow);
+            data.push((Math.random() * 10) + 80);
+
+            if (shift) {
+                date.shift();
+                data.shift();
+            }
+
+            now = new Date(+new Date(now) + oneDay);
+        }
+
+        for (var i = 1; i < 30; i++) {
+            addData();
+        }
+
+        function addData1(shift) {
+            timenow1 = [now1.getHours(), now1.getMinutes(), now1.getSeconds()].join(":");
+            date1.push(timenow1);
+            data1.push((Math.random() * 80) + 300);
+
+            if (shift) {
+                date1.shift();
+                data1.shift();
+            }
+
+            now1 = new Date(+new Date(now1) + oneDay1);
+        }
+
+        for (var i = 1; i < 30; i++) {
+            addData1();
+        }
+
+        function addData2(shift) {
+            timenow2 = [now2.getHours(), now2.getMinutes(), now2.getSeconds()].join(":");
+            date2.push(timenow2);
+            data2.push((Math.random() * 10) + 60);
+
+            if (shift) {
+                date2.shift();
+                data2.shift();
+            }
+
+            now2 = new Date(+new Date(now2) + oneDay2);
+        }
+
+        for (var i = 1; i < 30; i++) {
+            addData2();
+        }
+        option = {
+            title: [
+                {
+                    text: '网络流量总负载',
+                    textStyle: {
+                        fontSize: 24
+                    },
+                    left: '50%'
+                }
+            ],
+            xAxis: {
+                type: 'category',
+                name: '时间',
+                boundaryGap: false,
+                data: date
+            },
+            yAxis: {
+                name: 'MB/S',
+                boundaryGap: [0, '50%'],
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '网络流量',
+                    type: 'line',
+                    itemStyle: {
+                        normal: {
+                            color: '#51C332'
+                        }
+                    },
+                    smooth: true,
+                    symbol: 'none',
+                    areaStyle: {
+                        normal: {}
+                    },
+                    data: data
+                }
+            ]
+        };
+        option1 = {
+            title: [
+                {
+                    text: '数据库网络负载',
+                    textStyle: {
+                        fontSize: 24
+                    },
+                    left: '50%'
+                }
+            ],
+            xAxis: {
+                type: 'category',
+                name: '时间',
+                boundaryGap: false,
+                data: date1
+            },
+            yAxis: {
+                name: 'KB/S',
+                boundaryGap: [0, '50%'],
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '网络流量',
+                    type: 'line',
+                    itemStyle: {
+                        normal: {
+                            color: '#51C332'
+                        }
+                    },
+                    smooth: true,
+                    symbol: 'none',
+                    areaStyle: {
+                        normal: {}
+                    },
+                    data: data1
+                }
+            ]
+        };
+
+        option2 = {
+            title: [
+                {
+                    text: '爬虫网络负载',
+                    textStyle: {
+                        fontSize: 24
+                    },
+                    left: '50%'
+                }
+            ],
+            xAxis: {
+                type: 'category',
+                name: '时间',
+                boundaryGap: false,
+                data: date2
+            },
+            yAxis: {
+                name: 'MB/S',
+                boundaryGap: [0, '50%'],
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '网络流量',
+                    type: 'line',
+                    itemStyle: {
+                        normal: {
+                            color: '#51C332'
+                        }
+                    },
+                    smooth: true,
+                    symbol: 'none',
+                    areaStyle: {
+                        normal: {}
+                    },
+                    data: data2
+                }
+            ]
+        };
+        setInterval(function () {
+            addData(true);
+            addData1(true);
+            addData2(true);
+            myChart.setOption(option);
+            myChart1.setOption(option1);
+            myChart2.setOption(option2);
+        }, 1000);
+    </script>
+{% endblock %}

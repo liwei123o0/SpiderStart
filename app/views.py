@@ -314,3 +314,6 @@ def servercpu(request):
 
 def serverSQL(request):
     return render(request, 'serverSQL.html')
+
+def servernetwork(request):
+    return render(request,'servernetwork.html')

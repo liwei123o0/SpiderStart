@@ -36,5 +36,6 @@ urlpatterns = [
     url(r'^configfile/',configfile),
     url(r'^servercpu/',servercpu),
     url(r'^serversql/',serverSQL),
+    url(r'^servernetwork/',servernetwork),
 
 ]

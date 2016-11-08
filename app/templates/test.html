@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+<script type="text/javascript">
+    var now = new Date();
+    var date = [now.getHours(),now.getMinutes(),now.getSeconds(),now.getMilliseconds()].join(":");
+    console.info(date);
+    var base = +new Date(now.getHours(),now.getMinutes(),now.getSeconds(),now.getMilliseconds());
+    var now1 = new Date(base);
+    console.info(now1);
+    var distancetime = new Date(new Date().getTime() - 1000*60);
+    console.info(distancetime)
+</script>
 </head>
 <body>
-<form>
-    <input type="radio" value="123" name="123">123
-    <input type="radio" value="321" name="321">321
-</form>
 </body>
 </html>
