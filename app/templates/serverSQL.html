@@ -15,6 +15,11 @@
                 <div id="main" style="height: 800px;">
                 </div>
             </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">实时入库总量</div>
+                <div id="main1" style="height: 800px;">
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
@@ -24,6 +29,7 @@
     <script type="text/javascript">
 
         var myChart = echarts.init(document.getElementById('main'));
+        var myChart1 = echarts.init(document.getElementById('main1'));
         var geoCoordMap = {
             '北京': [116.4551, 40.2539],
             '天津': [117.4219, 39.4189],
@@ -151,7 +157,7 @@
                         },
                         label: {
                             emphasis: {
-                                show: true,
+                                show: true
 
                             }
                         },
