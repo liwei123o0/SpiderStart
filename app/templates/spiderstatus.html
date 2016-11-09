@@ -1,20 +1,20 @@
 {% extends 'base_scrapyd.html' %}
 {% block content %}
     <div id="page-wrapper">
-        <div class="header">
-            <h1 class="page-header">
-                爬虫项目概况
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="/">主页</a></li>
-                <li><a href="/spiderstatus/">任务状态</a></li>
-                <li class="active">详情</li>
-            </ol>
+    <div class="header">
+        <h1 class="page-header">
+            采集任务概况
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/">主页</a></li>
+            <li><a href="/spiderstatus/">任务状态</a></li>
+            <li class="active">详情</li>
+        </ol>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <p class="bg-info img-rounded yellow">&nbsp;&nbsp;&nbsp;爬虫任务等待</p>
+                        <p class="bg-info img-rounded yellow">&nbsp;&nbsp;&nbsp;采集任务等待</p>
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -25,20 +25,116 @@
                                     <th>服务器地址</th>
                                     <th>项目名称</th>
                                     <th>爬虫名称</th>
+                                    <th>目标源</th>
                                     <th>Job ID</th>
-                                    <th>开始时间</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for trs in pendings %}
-                                    <tr>
-                                        {% for pending in trs %}
-                                            <td>{{ pending|safe }}</td>
-                                         {% endfor %}
-                                    </tr>
-                                {% endfor %}
+                                <tr>
+                                    <td>1</td>
+                                    <td>192.168.10.24</td>
+                                    <td>yqapp</td>
+                                    <td>sntba</td>
+                                    <td>陕西采购与招标网</td>
+                                    <td>ddeb4d60a64511e68e4e000c290ce3da</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>192.168.10.27</td>
+                                    <td>yqapp</td>
+                                    <td>snstd</td>
+                                    <td>中国陕西省委科技工委陕西省科学技术厅</td>
+                                    <td>fcfc5470a63011e68da1000c299b83de</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>192.168.10.29</td>
+                                    <td>yqapp</td>
+                                    <td>pss</td>
+                                    <td>专利检索及分析</td>
+                                    <td>680a905ca5cc11e68da1000c299b83de</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>192.168.10.31</td>
+                                    <td>yqapp</td>
+                                    <td>chinatax</td>
+                                    <td>国家税务总局</td>
+                                    <td>fcfc5470a63011e68da1000c299b83de</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>192.168.10.44</td>
+                                    <td>yqapp</td>
+                                    <td>sntba</td>
+                                    <td>陕西采购与招标网</td>
+                                    <td>ddeb4d60a64511e68e4e000c290ce3da</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>192.168.10.54</td>
+                                    <td>yqapp</td>
+                                    <td>51job</td>
+                                    <td>前程无忧</td>
+                                    <td>fcfc5470a63011e68da1000c299b83de</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>192.168.10.121</td>
+                                    <td>yqapp</td>
+                                    <td>fynews</td>
+                                    <td>法院信息</td>
+                                    <td>680a905ca5cc11e68da1000c299b83de</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>192.168.10.161</td>
+                                    <td>yqapp</td>
+                                    <td>ccopyright_zp</td>
+                                    <td>作品著作权</td>
+                                    <td>fcfc5470a63011e68da1000c299b83de</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>192.168.10.232</td>
+                                    <td>yqapp</td>
+                                    <td>ccopyright_rj</td>
+                                    <td>软件作品权</td>
+                                    <td>680a905ca5cc11e68da1000c299b83de</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>192.168.10.174</td>
+                                    <td>yqapp</td>
+                                    <td>baidunews</td>
+                                    <td>企业新闻信息</td>
+                                    <td>fcfc5470a63011e68da1000c299b83de</td>
+                                </tr>
                                 </tbody>
                             </table>
+                            <nav>
+                                <ul class="pagination" style="float: right">
+                                    <li class="disabled">
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#">1 <span class="sr-only"></span></a>
+                                    </li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
@@ -48,7 +144,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <p class="bg-primary img-rounded">&nbsp;&nbsp;&nbsp;爬虫运行状态</p>
+                        <p class="bg-primary img-rounded green">&nbsp;&nbsp;&nbsp;采集运行状态</p>
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -59,26 +155,180 @@
                                     <th>服务器地址</th>
                                     <th>项目名称</th>
                                     <th>爬虫名称</th>
+                                    <th>目标源</th>
                                     <th>Job ID</th>
                                     <th>开始时间</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for trs in runnings %}
-                                    <tr>
-                                        {% for running in trs %}
-                                            <td>{{ running|safe }}</td>
-                                         {% endfor %}
-                                        <td>
-                                            <button id="stopspider" class="btn btn-danger" href=""
-                                                    onclick="stopspider(this)">停止
-                                            </button>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
+                                <tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>192.168.10.24</td>
+                                    <td>yqapp</td>
+                                    <td>sntba</td>
+                                    <td>陕西采购与招标网</td>
+                                    <td>ddeb4d60a64511e68e4e000c290ce3da</td>
+                                    <td>2016-14-09 07:00:03.514446</td>
+                                    <td>
+                                        <button id="stopspider" class="btn btn-danger" href=""
+                                                onclick="stopspider(this)">停止
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>192.168.10.27</td>
+                                    <td>yqapp</td>
+                                    <td>snstd</td>
+                                    <td>中国陕西省委科技工委陕西省科学技术厅</td>
+                                    <td>fcfc5470a63011e68da1000c299b83de</td>
+                                    <td>2016-14-09 07:12:23.541234</td>
+                                    <td>
+                                        <button id="stopspider" class="btn btn-danger" href=""
+                                                onclick="stopspider(this)">停止
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>192.168.10.29</td>
+                                    <td>yqapp</td>
+                                    <td>pss</td>
+                                    <td>专利检索及分析</td>
+                                    <td>680a905ca5cc11e68da1000c299b83de</td>
+                                    <td>2016-14-09 08:12:35.423234</td>
+                                    <td>
+                                        <button id="stopspider" class="btn btn-danger" href=""
+                                                onclick="stopspider(this)">停止
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>192.168.10.31</td>
+                                    <td>yqapp</td>
+                                    <td>chinatax</td>
+                                    <td>国家税务总局</td>
+                                    <td>fcfc5470a63011e68da1000c299b83de</td>
+                                    <td>2016-14-09 09:23:12.412545</td>
+                                    <td>
+                                        <button id="stopspider" class="btn btn-danger" href=""
+                                                onclick="stopspider(this)">停止
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>192.168.10.44</td>
+                                    <td>yqapp</td>
+                                    <td>sntba</td>
+                                    <td>陕西采购与招标网</td>
+                                    <td>ddeb4d60a64511e68e4e000c290ce3da</td>
+                                    <td>2016-14-09 06:45:23.231241</td>
+                                    <td>
+                                        <button id="stopspider" class="btn btn-danger" href=""
+                                                onclick="stopspider(this)">停止
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>192.168.10.54</td>
+                                    <td>yqapp</td>
+                                    <td>51job</td>
+                                    <td>前程无忧</td>
+                                    <td>fcfc5470a63011e68da1000c299b83de</td>
+                                    <td>2016-14-09 06:43:42.123143</td>
+                                    <td>
+                                        <button id="stopspider" class="btn btn-danger" href=""
+                                                onclick="stopspider(this)">停止
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>192.168.10.121</td>
+                                    <td>yqapp</td>
+                                    <td>fynews</td>
+                                    <td>法院信息</td>
+                                    <td>680a905ca5cc11e68da1000c299b83de</td>
+                                    <td>2016-14-09 05:12:21.433686</td>
+                                    <td>
+                                        <button id="stopspider" class="btn btn-danger" href=""
+                                                onclick="stopspider(this)">停止
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>192.168.10.161</td>
+                                    <td>yqapp</td>
+                                    <td>ccopyright_zp</td>
+                                    <td>作品著作权</td>
+                                    <td>fcfc5470a63011e68da1000c299b83de</td>
+                                    <td>2016-14-09 05:23:52.653462</td>
+                                    <td>
+                                        <button id="stopspider" class="btn btn-danger" href=""
+                                                onclick="stopspider(this)">停止
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>192.168.10.232</td>
+                                    <td>yqapp</td>
+                                    <td>ccopyright_rj</td>
+                                    <td>软件作品权</td>
+                                    <td>680a905ca5cc11e68da1000c299b83de</td>
+                                    <td>2016-14-09 04:23:52.976625</td>
+                                    <td>
+                                        <button id="stopspider" class="btn btn-danger" href=""
+                                                onclick="stopspider(this)">停止
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>192.168.10.174</td>
+                                    <td>yqapp</td>
+                                    <td>baidunews</td>
+                                    <td>企业新闻信息</td>
+                                    <td>fcfc5470a63011e68da1000c299b83de</td>
+                                    <td>2016-14-09 04:23:32.753357</td>
+                                    <td>
+                                        <button id="stopspider" class="btn btn-danger" href=""
+                                                onclick="stopspider(this)">停止
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tr>
                                 </tbody>
                             </table>
+                            <nav>
+                                <ul class="pagination" style="float: right">
+                                    <li class="disabled">
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#">1 <span class="sr-only"></span></a>
+                                    </li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
@@ -88,7 +338,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <p class="bg-success  img-rounded green">&nbsp;&nbsp;&nbsp;爬虫完成状态</p>
+                        <p class="bg-primary  img-rounded">&nbsp;&nbsp;&nbsp;采集完成状态</p>
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -102,6 +352,7 @@
                                     <th>Job ID</th>
                                     <th>开始时间</th>
                                     <th>结束时间</th>
+                                    <th>目标源</th>
                                     <th>Items</th>
                                 </tr>
                                 </thead>
@@ -110,7 +361,10 @@
                                     <tr>
                                         {% for finished in trs %}
                                             <td>{{ finished|safe }}</td>
-                                         {% endfor %}
+                                        {% endfor %}
+                                        <td>
+                                            百度网
+                                        </td>
                                         <td>
                                             <button id="dataspider" class="btn btn-info" href=""
                                                     onclick="dataspider(this)">查看数据
@@ -120,12 +374,35 @@
                                 {% endfor %}
                                 </tbody>
                             </table>
+                            <nav>
+                                <ul class="pagination" style="float: right">
+                                    <li class="disabled">
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#">1 <span class="sr-only"></span></a>
+                                    </li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
 
 
@@ -150,13 +427,13 @@
             var http = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
             var name = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
             var jobid = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
-            var cancel = "http://" + http + ":6800/cancel.json -d project=" + name + " -d job="+jobid;
+            var cancel = "http://" + http + ":6800/cancel.json -d project=" + name + " -d job=" + jobid;
             $.get("/stopspider/", {'stopspider': cancel},
                     function (data) {
-                        layer.alert(data,{
-                            skin : 'layer-ext-myskin',
+                        layer.alert(data, {
+                            skin: 'layer-ext-myskin',
                             btn: ['知道了'],
-                            title:'提示信息!',
+                            title: '提示信息!',
                             time: 20000 //20s后自动关闭
                         });
                     });//这里返回的类型有：json,html,xml,text
@@ -171,22 +448,22 @@
                     c1 = $(this).html();
                 } else if (i == 2) {
                     c2 = $(this).html();
-                }else if (i == 3) {
+                } else if (i == 3) {
                     c3 = $(this).html();
                 }
             });
-{#            var http = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');#}
+            {#            var http = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');#}
             var name = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
             var spidername = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
-{#            var dataview = http+"|" + name;#}
-{#            $.get("/dataspider/", {'view': spidername }, #}
+            {#            var dataview = http+"|" + name;#}
+            {#            $.get("/dataspider/", {'view': spidername }, #}
             $.get("/dataspider/",
                     function (data) {
-                        layer.alert(data,{
-                        skin : 'layer-ext-myskin',
-                        btn:'',
-                        title:'数据视图',
-                        area: ['80%', '80%']
+                        layer.alert(data, {
+                            skin: 'layer-ext-myskin',
+                            btn: '',
+                            title: '数据视图',
+                            area: ['80%', '80%']
                         });
                     });//这里返回的类型有：json,html,xml,text
         }

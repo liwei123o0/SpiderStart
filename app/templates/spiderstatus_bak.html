@@ -1,0 +1,205 @@
+{% extends 'base_scrapyd.html' %}
+{% block content %}
+    <div id="page-wrapper">
+    <div class="header">
+        <h1 class="page-header">
+            爬虫项目概况
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/">主页</a></li>
+            <li><a href="/spiderstatus/">任务状态</a></li>
+            <li class="active">详情</li>
+        </ol>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p class="bg-info img-rounded yellow">&nbsp;&nbsp;&nbsp;爬虫任务等待</p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>服务器地址</th>
+                                    <th>项目名称</th>
+                                    <th>爬虫名称</th>
+                                    <th>Job ID</th>
+                                    <th>目标源</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for trs in pendings %}
+                                    <tr>
+                                        {% for pending in trs %}
+                                            <td>{{ pending|safe }}</td>
+                                        {% endfor %}
+                                        <td>
+                                            百度网
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p class="bg-primary img-rounded">&nbsp;&nbsp;&nbsp;爬虫运行状态</p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>服务器地址</th>
+                                    <th>项目名称</th>
+                                    <th>爬虫名称</th>
+                                    <th>Job ID</th>
+                                    <th>开始时间</th>
+                                    <th>目标源</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for trs in runnings %}
+                                    <tr>
+                                        {% for running in trs %}
+                                            <td>{{ running|safe }}</td>
+                                        {% endfor %}
+                                        <td>
+                                            百度网
+                                        </td>
+                                        <td>
+                                            <button id="stopspider" class="btn btn-danger" href=""
+                                                    onclick="stopspider(this)">停止
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p class="bg-success  img-rounded green">&nbsp;&nbsp;&nbsp;爬虫完成状态</p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>服务器地址</th>
+                                    <th>项目名称</th>
+                                    <th>爬虫名称</th>
+                                    <th>Job ID</th>
+                                    <th>开始时间</th>
+                                    <th>结束时间</th>
+                                    <th>目标源</th>
+                                    <th>Items</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for trs in finishes %}
+                                    <tr>
+                                        {% for finished in trs %}
+                                            <td>{{ finished|safe }}</td>
+                                        {% endfor %}
+                                        <td>
+                                            百度网
+                                        </td>
+                                        <td>
+                                            <button id="dataspider" class="btn btn-info" href=""
+                                                    onclick="dataspider(this)">查看数据
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+{% block script %}
+    <script src="../static/assets/jquery-1.9.1.min.js"></script>
+    <script src="../static/assets/layer.js"></script>
+    <script type="text/javascript">
+        function stopspider(o) {
+            var tds = $(o).parent().parent().find("td");
+            var c1, c2, c3;
+            $(tds).each(function (i, td) {
+                if (i == 1) {
+                    c1 = $(this).html();
+                } else if (i == 2) {
+                    c2 = $(this).html();
+                }
+                else if (i == 3) {
+                    c3 = $(this).html();
+                }
+            });
+            var http = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var name = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var jobid = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var cancel = "http://" + http + ":6800/cancel.json -d project=" + name + " -d job=" + jobid;
+            $.get("/stopspider/", {'stopspider': cancel},
+                    function (data) {
+                        layer.alert(data, {
+                            skin: 'layer-ext-myskin',
+                            btn: ['知道了'],
+                            title: '提示信息!',
+                            time: 20000 //20s后自动关闭
+                        });
+                    });//这里返回的类型有：json,html,xml,text
+        }
+    </script>
+    <script type="text/javascript">
+        function dataspider(o) {
+            var tds = $(o).parent().parent().find("td");
+            var c1, c2;
+            $(tds).each(function (i, td) {
+                if (i == 1) {
+                    c1 = $(this).html();
+                } else if (i == 2) {
+                    c2 = $(this).html();
+                } else if (i == 3) {
+                    c3 = $(this).html();
+                }
+            });
+            {#            var http = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');#}
+            var name = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var spidername = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            {#            var dataview = http+"|" + name;#}
+            {#            $.get("/dataspider/", {'view': spidername }, #}
+            $.get("/dataspider/",
+                    function (data) {
+                        layer.alert(data, {
+                            skin: 'layer-ext-myskin',
+                            btn: '',
+                            title: '数据视图',
+                            area: ['80%', '80%']
+                        });
+                    });//这里返回的类型有：json,html,xml,text
+        }
+    </script>
+{% endblock %}

@@ -30,6 +30,29 @@
 
         var myChart = echarts.init(document.getElementById('main'));
         var myChart1 = echarts.init(document.getElementById('main1'));
+
+        var oneDay1 = 1000;
+        var now1 = new Date();
+        var date1 = [];
+        var data1 = [Math.random() * 100];
+
+        function addData1(shift) {
+            timenow1 = [now1.getHours(), now1.getMinutes(), now1.getSeconds()].join(":");
+            date1.push(timenow1);
+            data1.push((Math.random() * 80) + 300);
+
+            if (shift) {
+                date1.shift();
+                data1.shift();
+            }
+
+            now1 = new Date(+new Date(now1) + oneDay1);
+        }
+
+        for (var i = 1; i < 30; i++) {
+            addData1();
+        }
+
         var geoCoordMap = {
             '北京': [116.4551, 40.2539],
             '天津': [117.4219, 39.4189],
@@ -208,14 +231,13 @@
             );
         }
 
-        console.log(series);
         option = {
             title: {
                 text: '数据采集范围汇总图',
                 subtext: '采集数据量',
                 left: 'center',
                 textStyle: {
-                    fontSize:28,
+                    fontSize: 28,
                     color: '#000'
                 }
             },
@@ -238,7 +260,7 @@
                 left: 'right',
                 data: ['今日采集', '昨日采集'],
                 textStyle: {
-                    fontSize:18,
+                    fontSize: 18,
                     color: '#51C332'
                 },
                 selectedMode: 'single'
@@ -263,6 +285,50 @@
             },
             series: series
         };
-            myChart.setOption(option);
+        option1 = {
+            title: [
+                {
+                    text: '实时数据入库量',
+                    textStyle: {
+                        fontSize: 24
+                    },
+                    left: '50%'
+                }
+            ],
+            xAxis: {
+                type: 'category',
+                name: '时间',
+                boundaryGap: false,
+                data: date1
+            },
+            yAxis: {
+                name: '条/S',
+                boundaryGap: [0, '50%'],
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '网络流量',
+                    type: 'line',
+                    itemStyle: {
+                        normal: {
+                            color: '#51C332'
+                        }
+                    },
+                    smooth: true,
+                    symbol: 'none',
+                    areaStyle: {
+                        normal: {}
+                    },
+                    data: data1
+                }
+            ]
+        };
+
+        myChart.setOption(option);
+        setInterval(function () {
+            addData1(true);
+            myChart1.setOption(option1);
+        },1000)
     </script>
 {% endblock %}
