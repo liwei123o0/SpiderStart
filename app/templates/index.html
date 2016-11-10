@@ -7,11 +7,11 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="/">主页</a></li>
-                <li><a href="#">采集概况</a></li>
+                <li><a href="/">采集概况</a></li>
                 <li class="active">详情</li>
             </ol>
             <div class="row">
-                <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="col-md-2 col-sm-2 col-xs-2">
                     <div class="board">
                         <div class="panel panel-primary red">
                             <div class="number">
@@ -27,14 +27,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="col-md-2 col-sm-2 col-xs-2">
                     <div class="board">
                         <div class="panel panel-primary blue">
                             <div class="number">
                                 <h3>
                                     {#                                    <h3 style="color: #FFFFFF">{{ spiders|safe }}</h3>#}
                                     <h3 style="color: #FFFFFF">1056</h3>
-                                    <small style="color: #FFFFFF">爬虫总数</small>
+                                    <small style="color: #FFFFFF">采集源总数</small>
                                 </h3>
                             </div>
                             <div class="icon">
@@ -43,14 +43,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="col-md-2 col-sm-2 col-xs-2">
                     <div class="board">
                         <div class="panel panel-primary green">
                             <div class="number">
                                 <h3>
                                     {#                                    <h3 style="color: #FFFFFF">{{ running|safe }}</h3>#}
                                     <h3 style="color: #FFFFFF">35</h3>
-                                    <small style="color: #FFFFFF">爬虫运行数</small>
+                                    <small style="color: #FFFFFF">采集运行数</small>
                                 </h3>
                             </div>
                             <div class="icon">
@@ -60,14 +60,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="col-md-2 col-sm-2 col-xs-2">
                     <div class="board">
                         <div class="panel panel-primary yellow">
                             <div class="number">
                                 <h3>
                                     {#                                    <h3 style="color: #FFFFFF">{{ finished|safe }}</h3>#}
                                     <h3 style="color: #FFFFFF">2136</h3>
-                                    <small style="color: #FFFFFF">爬虫完成数</small>
+                                    <small style="color: #FFFFFF">采集完成数</small>
                                 </h3>
                             </div>
                             <div class="icon">
@@ -76,10 +76,47 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <div class="board">
+                        <div class="panel panel-primary red">
+                            <div class="number">
+                                <h3>
+                                    {#                                    <h3 style="color: #FFFFFF">{{ finished|safe }}</h3>#}
+                                    <h3 style="color: #FFFFFF">216</h3>
+                                    <small style="color: #FFFFFF">分级类别数</small>
+                                </h3>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-archive fa-5x red"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <div class="board">
+                        <div class="panel panel-primary blue">
+                            <div class="number">
+                                <h3>
+                                    {#                                    <h3 style="color: #FFFFFF">{{ finished|safe }}</h3>#}
+                                    <h3 style="color: #FFFFFF">4</h3>
+                                    <small style="color: #FFFFFF">分布式集群数</small>
+                                </h3>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-sitemap fa-5x blue"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">全国互联网采集情况图</div>
                 <div id="map" style="height: 800px;">
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">实时入库量</div>
+                <div id="sql" style="height: 600px;">
                 </div>
             </div>
             <div class="panel panel-primary">
@@ -120,6 +157,30 @@
         var myChart4 = echarts.init(document.getElementById('main4'));
         var myChart5 = echarts.init(document.getElementById('main5'));
         var myChart6 = echarts.init(document.getElementById('map'));
+        var myChart7 = echarts.init(document.getElementById('sql'));
+
+        var oneDay1 = 1000;
+        var now1 = new Date();
+        var date1 = [];
+        var data1 = [Math.random() * 100];
+
+        function addData1(shift) {
+            timenow1 = [now1.getHours(), now1.getMinutes(), now1.getSeconds()].join(":");
+            date1.push(timenow1);
+            data1.push((Math.random() * 80) + 300);
+
+            if (shift) {
+                date1.shift();
+                data1.shift();
+            }
+
+            now1 = new Date(+new Date(now1) + oneDay1);
+        }
+
+        for (var i = 1; i < 30; i++) {
+            addData1();
+        }
+
         option = {
             title: [{
                 text: '',
@@ -724,7 +785,6 @@
             );
         }
 
-        console.log(series);
         optionmap = {
             title: {
                 text: '全国数据采集范围流向图',
@@ -766,7 +826,8 @@
                         show: false
                     }
                 },
-                roam: true,
+                roam: false,
+                zoom: 1.2,
                 itemStyle: {
                     normal: {
                         areaColor: '#F0F2F5',
@@ -779,7 +840,49 @@
             },
             series: series
         };
+
+        optionsql = {
+            title: [
+                {
+                    text: '实时入库量',
+                    textStyle: {
+                        fontSize: 24
+                    },
+                    left: '50%'
+                }
+            ],
+            xAxis: {
+                type: 'category',
+                name: '时间',
+                boundaryGap: false,
+                data: date1
+            },
+            yAxis: {
+                name: '条/S',
+                boundaryGap: [0, '50%'],
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '网络流量',
+                    type: 'line',
+                    itemStyle: {
+                        normal: {
+                            color: '#51C332'
+                        }
+                    },
+                    smooth: true,
+                    symbol: 'none',
+                    areaStyle: {
+                        normal: {}
+                    },
+                    data: data1
+                }
+            ]
+        };
+
         setInterval(function () {
+            addData1(true);
             option.series[0].data[0].value = (Math.random() * 2 + 6).toFixed(2) - 0;
             option.series[1].data[0].value = Math.floor(Math.random() * 40) + 50;
             option1.series[0].data[0].value = (Math.random() * 1 + 6).toFixed(2) - 0;
@@ -798,7 +901,8 @@
             myChart3.setOption(option3);
             myChart4.setOption(option4);
             myChart5.setOption(option5);
+            myChart7.setOption(optionsql);
         }, 1000);
-    myChart6.setOption(optionmap);
+        myChart6.setOption(optionmap);
     </script>
 {% endblock %}

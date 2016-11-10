@@ -6,8 +6,8 @@
                 系统性能
             </h1>
             <ol class="breadcrumb">
-                <li><a href="/serverstatus/">主页</a></li>
-                <li><a href="/serverstatus/">系统性能</a></li>
+                <li><a href="/">主页</a></li>
+                <li><a href="/serversql/">系统性能</a></li>
                 <li class="active">详情</li>
             </ol>
             <div class="panel panel-primary">
@@ -17,7 +17,7 @@
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">实时入库量</div>
-                <div id="main1" style="height: 800px;">
+                <div id="main1" style="height: 600px;">
                 </div>
             </div>
         </div>
@@ -272,7 +272,9 @@
                         show: false
                     }
                 },
-                roam: true,
+{#                是否支持地图缩放#}
+                roam: false,
+                zoom:1.2,
                 itemStyle: {
                     normal: {
                         areaColor: '#F0F2F5',
