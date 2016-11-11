@@ -93,7 +93,7 @@
         .watermark {
             position: fixed;
             z-index: -1;
-            top:0;
+            top: 0;
             left: 0;
             width: 100%;
 
@@ -150,12 +150,15 @@
             cursor: text;
             text-decoration: none;
         }
-        .t_right{
+
+        .t_right {
             text-align: right;
         }
-        .t_left{
+
+        .t_left {
             text-align: left;
         }
+
         /*
             cg 20161024
             @查询详情页面
@@ -170,12 +173,28 @@
         <table class="baseIfm-body" style="width: 95%;margin: 0 auto">
             {% for k,v in datas.items %}
                 <tr>
-                    <td class="bg-f2 t_right frist">{{ k|safe }}</td>
-                    <td class="f-tal t_left last" colspan="3">{{ v|safe }}</td>
+                    <td id="td" class="bg-f2 t_right frist">{{ k|safe }}</td>
+                    <td id="td1" class="f-tal t_left last" colspan="3">{{ v|safe }}</td>
                 </tr>
             {% endfor %}
         </table>
     </div>
 {% endfor %}
+{% block script %}
+    <script type="text/javascript">
+        var tables = document.getElementsByClassName("baseIfm-body");
+        for (var i = 0; i < tables.length; i++) {
+            for (var k = 0; k < tables[i].rows.length; k++) {
+                var url = tables[i].rows[k].cells[1].innerHTML;
+                if(url.substr(0,4) =='http'){
+                    tables[i].rows[k].cells[1].innerHTML = '<td id="td1" class="f-tal t_left last" colspan="3"><a href = "'+url+'" target="view_window">'+url+'</a></td>';
+                }
+                else {
+                    continue;
+                }
+            }
+        }
+    </script>
+{% endblock %}
 </body>
 </html>

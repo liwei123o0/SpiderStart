@@ -1,4 +1,11 @@
 {% extends 'base_scrapyd.html' %}
+{% block head %}
+    <style type="text/css">
+    .table th{
+        text-align: center;
+    }
+    </style>
+{% endblock %}
 {% block content %}
     <div id="page-wrapper">
     <div class="header">
@@ -18,7 +25,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover">
+                            <table class="table table-striped table-bordered table-hover" style="text-align: center">
                                 <thead>
                                 <tr>
                                     <th>序号</th>
@@ -148,7 +155,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover">
+                            <table class="table table-striped table-bordered table-hover" style="text-align: center">
                                 <thead>
                                 <tr>
                                     <th>序号</th>
@@ -342,7 +349,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover">
+                            <table class="table table-striped table-bordered table-hover" style="text-align: center">
                                 <thead>
                                 <tr>
                                     <th>序号</th>
@@ -359,7 +366,7 @@
                                 <tbody>
                                 <tr>
                                     <td>
-                                        46
+                                        1
                                     </td>
                                     <td>
                                         192.168.10.26
@@ -378,21 +385,499 @@
                                         </button>
                                     </td>
                                 </tr>
-                                {% for trs in finishes %}
-                                    <tr>
-                                        {% for finished in trs %}
-                                            <td>{{ finished|safe }}</td>
-                                        {% endfor %}
-                                        <td>
-                                            百度网
-                                        </td>
-                                        <td>
-                                            <button id="dataspider" class="btn btn-info" href=""
-                                                    onclick="dataspider(this)">查看数据
-                                            </button>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
+                                <tr>
+
+                                    <td>2</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>news</td>
+
+                                    <td>5200d854a7c311e68da1000c299b83de</td>
+
+                                    <td>2016-11-11 12:00:08.520196</td>
+
+                                    <td>2016-11-11 12:01:48.572331</td>
+
+                                    <td>
+                                        企业新闻
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="datanews(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>3</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>51job</td>
+
+                                    <td>520308e0a7c311e68da1000c299b83de</td>
+
+                                    <td>2016-11-11 12:00:13.522073</td>
+
+                                    <td>2016-11-11 12:00:25.979332</td>
+
+                                    <td>
+                                        招聘信息
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="datajob(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>4</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>zbnews</td>
+
+                                    <td>bcfdadcca75e11e68da1000c299b83de</td>
+
+                                    <td>2016-11-11 00:00:03.530864</td>
+
+                                    <td>2016-11-11 02:48:45.353075</td>
+
+                                    <td>
+                                        中标信息
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="datazbxx(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>5</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>saic</td>
+
+                                    <td>3beb04b0a71c11e68da1000c299b83de</td>
+
+                                    <td>2016-11-10 16:04:03.552860</td>
+
+                                    <td>2016-11-11 02:03:54.092316</td>
+
+                                    <td>
+                                        中国政府采购招标网
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>6</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>sntba</td>
+
+                                    <td>bd017678a75e11e68da1000c299b83de</td>
+
+                                    <td>2016-11-11 00:00:13.509050</td>
+
+                                    <td>2016-11-11 01:28:28.570615</td>
+
+                                    <td>
+                                        陕西招标信息网
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>7</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>caigou</td>
+
+                                    <td>bd02de1ea75e11e68da1000c299b83de</td>
+
+                                    <td>2016-11-11 00:00:18.513592</td>
+
+                                    <td>2016-11-11 00:01:15.326489</td>
+
+                                    <td>
+                                        陕西招标网
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>8</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>zbxx</td>
+
+                                    <td>bd00dbdca75e11e68da1000c299b83de</td>
+
+                                    <td>2016-11-11 00:00:08.522682</td>
+
+                                    <td>2016-11-11 00:00:23.742905</td>
+
+                                    <td>
+                                        中国项目招标网
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>9</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>sntba</td>
+
+                                    <td>27b6c41aa6fa11e68da1000c299b83de</td>
+
+                                    <td>2016-11-10 12:00:03.516461</td>
+
+                                    <td>2016-11-10 14:37:36.658943</td>
+
+                                    <td>
+                                        中国电力招标网
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>10</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>news</td>
+
+                                    <td>27bb494aa6fa11e68da1000c299b83de</td>
+
+                                    <td>2016-11-10 12:00:13.516922</td>
+
+                                    <td>2016-11-10 12:26:41.487955</td>
+
+                                    <td>
+                                        中国建设工程招标网
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>11</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>caigou</td>
+
+                                    <td>27be0faea6fa11e68da1000c299b83de</td>
+
+                                    <td>2016-11-10 12:00:18.524538</td>
+
+                                    <td>2016-11-10 12:02:13.021019</td>
+
+                                    <td>
+                                        中国物流招标网
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>12</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>zbxx</td>
+
+                                    <td>27b8e984a6fa11e68da1000c299b83de</td>
+
+                                    <td>2016-11-10 12:00:08.534162</td>
+
+                                    <td>2016-11-10 12:00:24.366914</td>
+
+                                    <td>
+                                        陕西招标网
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>13</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>sntba</td>
+
+                                    <td>928fcaf8a69511e68da1000c299b83de</td>
+
+                                    <td>2016-11-10 00:00:13.518271</td>
+
+                                    <td>2016-11-10 01:31:55.036738</td>
+
+                                    <td>
+                                        中国采招网
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>14</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>news</td>
+
+                                    <td>928f2b98a69511e68da1000c299b83de</td>
+
+                                    <td>2016-11-10 00:00:08.516371</td>
+
+                                    <td>2016-11-10 00:34:41.588105</td>
+
+                                    <td>
+                                        中国特种装备网
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>15</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>caigou</td>
+
+                                    <td>92905e6ea69511e68da1000c299b83de</td>
+
+                                    <td>2016-11-10 00:00:18.528020</td>
+
+                                    <td>2016-11-10 00:01:14.566138</td>
+
+                                    <td>
+                                        中国采购与招标网
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>16</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>zbxx</td>
+
+                                    <td>928c8028a69511e68da1000c299b83de</td>
+
+                                    <td>2016-11-10 00:00:03.571883</td>
+
+                                    <td>2016-11-10 00:00:27.654227</td>
+
+                                    <td>
+                                        中华人民共和国财政部
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>17</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>sntba</td>
+
+                                    <td>fcf9c1cea63011e68da1000c299b83de</td>
+
+                                    <td>2016-11-09 12:00:03.514446</td>
+
+                                    <td>2016-11-09 13:57:52.389733</td>
+
+                                    <td>
+                                        陕西广电网络
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>18</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>caigou</td>
+
+                                    <td>fcfc5470a63011e68da1000c299b83de</td>
+
+                                    <td>2016-11-09 12:00:08.523580</td>
+
+                                    <td>2016-11-09 12:01:43.247738</td>
+
+                                    <td>
+                                        中国采招交易网
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>19</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>zbxx</td>
+
+                                    <td>fcfd317ea63011e68da1000c299b83de</td>
+
+                                    <td>2016-11-09 12:00:13.518605</td>
+
+                                    <td>2016-11-09 12:00:23.917095</td>
+
+                                    <td>
+                                        路桥设备材料网
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>20</td>
+
+                                    <td>192.168.10.25</td>
+
+                                    <td>yqapp</td>
+
+                                    <td>sntba</td>
+
+                                    <td>680a905ca5cc11e68da1000c299b83de</td>
+
+                                    <td>2016-11-09 00:00:08.518069</td>
+
+                                    <td>2016-11-09 01:28:54.207011</td>
+
+                                    <td>
+                                        西安市莲湖区财政局
+                                    </td>
+                                    <td>
+                                        <button id="dataspider" class="btn btn-info" href=""
+                                                onclick="dataspider(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                             <nav>
@@ -506,6 +991,87 @@
             {#            var dataview = http+"|" + name;#}
             {#            $.get("/dataspider/", {'view': spidername }, #}
             $.get("/dataspidertest/",
+                    function (data) {
+                        layer.alert(data, {
+                            skin: 'layer-ext-myskin',
+                            btn: '',
+                            title: '数据视图',
+                            area: ['80%', '80%']
+                        });
+                    });//这里返回的类型有：json,html,xml,text
+        }
+    function datanews(o) {
+            var tds = $(o).parent().parent().find("td");
+            var c1, c2;
+            $(tds).each(function (i, td) {
+                if (i == 1) {
+                    c1 = $(this).html();
+                } else if (i == 2) {
+                    c2 = $(this).html();
+                } else if (i == 3) {
+                    c3 = $(this).html();
+                }
+            });
+            {#            var http = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');#}
+            var name = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var spidername = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            {#            var dataview = http+"|" + name;#}
+            {#            $.get("/dataspider/", {'view': spidername }, #}
+            $.get("/datanews/",
+                    function (data) {
+                        layer.alert(data, {
+                            skin: 'layer-ext-myskin',
+                            btn: '',
+                            title: '数据视图',
+                            area: ['80%', '80%']
+                        });
+                    });//这里返回的类型有：json,html,xml,text
+        }
+    function datajob(o) {
+            var tds = $(o).parent().parent().find("td");
+            var c1, c2;
+            $(tds).each(function (i, td) {
+                if (i == 1) {
+                    c1 = $(this).html();
+                } else if (i == 2) {
+                    c2 = $(this).html();
+                } else if (i == 3) {
+                    c3 = $(this).html();
+                }
+            });
+            {#            var http = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');#}
+            var name = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var spidername = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            {#            var dataview = http+"|" + name;#}
+            {#            $.get("/dataspider/", {'view': spidername }, #}
+            $.get("/datajob/",
+                    function (data) {
+                        layer.alert(data, {
+                            skin: 'layer-ext-myskin',
+                            btn: '',
+                            title: '数据视图',
+                            area: ['80%', '80%']
+                        });
+                    });//这里返回的类型有：json,html,xml,text
+        }
+    function datazbxx(o) {
+            var tds = $(o).parent().parent().find("td");
+            var c1, c2;
+            $(tds).each(function (i, td) {
+                if (i == 1) {
+                    c1 = $(this).html();
+                } else if (i == 2) {
+                    c2 = $(this).html();
+                } else if (i == 3) {
+                    c3 = $(this).html();
+                }
+            });
+            {#            var http = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');#}
+            var name = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var spidername = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            {#            var dataview = http+"|" + name;#}
+            {#            $.get("/dataspider/", {'view': spidername }, #}
+            $.get("/datazbxx/",
                     function (data) {
                         layer.alert(data, {
                             skin: 'layer-ext-myskin',

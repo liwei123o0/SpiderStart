@@ -5,8 +5,9 @@ from django.shortcuts import render
 from app.tasks import setspidertask
 from SpiderStarts.settings import conf
 from django.http import HttpResponse
-import os, time, requests, json, MySQLdb, re, wmi
+import os, time, requests, json, MySQLdb, re
 from MySQLdb.cursors import DictCursor
+from collections import OrderedDict
 
 
 def index(request):
@@ -312,32 +313,59 @@ def configfile(request):
 def servercpu(request):
     return render(request, 'servercpu.html')
 
+
 def serverSQL(request):
     return render(request, 'serverSQL.html')
 
+
 def servernetwork(request):
-    return render(request,'servernetwork.html')
+    return render(request, 'servernetwork.html')
+
 
 def dataspidertest(request):
-
     conn = MySQLdb.connect(host="192.168.10.24", port=3306, user="root", passwd="root", charset="utf8",
                            cursorclass=DictCursor)
     cur = conn.cursor()
-    # 根据表明查字段
-    # cur.execute(
-    #     "SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = '{}' AND table_schema = 'yqapp'".format(
-    #         views))
-    # cur.execute(
-    #     "SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'zbxx' AND table_schema = 'yqapp'")
-    # keyword = cur.fetchall()
-    # cur.execute("SELECT * FROM yqapp.{} LIMIT 10".format(views))
-    cur.execute("SELECT * FROM yqapp.zbxx_gy WHERE name LIKE '%贵阳%' GROUP BY pubtime DESC LIMIT 20 ")
+    cur.execute("SELECT url,name as '标题',author as '来源',pubtime as '发布时间',zbtype as '采集类型',zbje as '中标金额',\
+diqu as '地区',content as '内容' FROM yqapp.zbxx_gy WHERE name LIKE '%贵阳%' GROUP BY pubtime DESC LIMIT 20 ")
     spiderdatas = cur.fetchall()
-    # print spiderdata
-    # for k in keyword:
-    #     keywords.append(k[0])
-    # for datas in spiderdata:
-    #     spiderdatas.append(datas)
+    cur.close()
+    conn.close()
+    return render(request, 'dataspider.html', {'spiderdatas': spiderdatas})
+
+
+def datanews(request):
+    conn = MySQLdb.connect(host="192.168.10.24", port=3306, user="root", passwd="root", charset="utf8",
+                           cursorclass=DictCursor)
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT url,title as '标题',pubtime as '发布时间',content as '内容' FROM yqapp.news GROUP BY pubtime DESC LIMIT 20 ")
+    spiderdatas = cur.fetchall()
+    cur.close()
+    conn.close()
+    return render(request, 'dataspider.html', {'spiderdatas': spiderdatas})
+
+
+def datajob(request):
+    conn = MySQLdb.connect(host="192.168.10.24", port=3306, user="root", passwd="root", charset="utf8",
+                           cursorclass=DictCursor)
+    cur = conn.cursor()
+    cur.execute("SELECT url,name as '公司名称', jobname as '职位名称', pay as '薪资',didian as '地点',\
+ number as '招聘人数',pubtime as '发布时间' FROM yqapp.zhaopin GROUP BY pubtime DESC LIMIT 20 ")
+    spiderdatas = cur.fetchall()
+    cur.close()
+    conn.close()
+    return render(request, 'dataspider.html', {'spiderdatas': spiderdatas})
+
+
+def datazbxx(request):
+    conn = MySQLdb.connect(host="192.168.10.24", port=3306, user="root", passwd="root", charset="utf8",
+                           cursorclass=DictCursor)
+    cur = conn.cursor()
+    cur.execute("SELECT XB_URL AS 'url',XB_TITLE AS '标题',XB_PM AS '品目',XB_XMLXR AS '项目联系人',XB_XMLXDH AS '项目联系人电话',\
+ XB_CGDW AS '采购单位',XB_CGDWDZ AS '采购单位地址', XB_CGDWLXFS AS '采购单位联系方式',\
+  XB_ZBRQ AS '中标日期',XB_ZBJE AS '中标金额',XB_KBSJ AS '开标时间',XB_CONTENT AS '内容',XB_REGION AS '地区' FROM xbzx.zhaobiao_xy_bak GROUP BY XB_PUBTIME DESC LIMIT 20 ")
+    spiderdatas = cur.fetchall()
     cur.close()
     conn.close()
     return render(request, 'dataspider.html', {'spiderdatas': spiderdatas})
