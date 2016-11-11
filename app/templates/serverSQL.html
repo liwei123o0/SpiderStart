@@ -17,7 +17,12 @@
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">实时入库量</div>
-                <div id="main1" style="height: 600px;">
+                <div id="main1" style="height: 400px;">
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">集群历史入库量</div>
+                <div id="sql" style="height: 500px;">
                 </div>
             </div>
         </div>
@@ -30,11 +35,29 @@
 
         var myChart = echarts.init(document.getElementById('main'));
         var myChart1 = echarts.init(document.getElementById('main1'));
+        var myChart2 = echarts.init(document.getElementById('sql'));
+
 
         var oneDay1 = 1000;
         var now1 = new Date();
         var date1 = [];
         var data1 = [Math.random() * 100];
+
+        var base = +new Date(2016, 10, 14);
+        var oneDay = 24 * 3600 * 1000;
+        var date = [];
+        var sqldata = [];
+        var sqldata1 = [];
+        var sqldata2 = [];
+
+
+        for (var i = 1; i < 31; i++) {
+            var now = new Date(base += oneDay);
+            date.push([now.getFullYear(), now.getMonth(), now.getDate()].join('-'));
+            sqldata.push(Math.random().toFixed(2) * 150000 + 300000);
+            sqldata1.push(Math.random().toFixed(2) * 250000 + 400000);
+            sqldata2.push(Math.random().toFixed(2) * 100000 + 100000);
+        }
 
         function addData1(shift) {
             timenow1 = [now1.getHours(), now1.getMinutes(), now1.getSeconds()].join(":");
@@ -272,9 +295,9 @@
                         show: false
                     }
                 },
-{#                是否支持地图缩放#}
+                {#                是否支持地图缩放#}
                 roam: false,
-                zoom:1.2,
+                zoom: 1.2,
                 itemStyle: {
                     normal: {
                         areaColor: '#F0F2F5',
@@ -327,10 +350,78 @@
             ]
         };
 
+        optionsql = {
+            title: {
+                text: '集群历史入库量',
+                left: 'center',
+                textStyle: {
+                    fontSize: '28'
+                }
+            },
+            legend: {
+                y: 'top',
+                left :'right',
+                data: ['高新集群', '陕西集群', '宁夏集群'],
+                textStyle: {
+                    fontSize: 18
+                }
+            },
+                color: ['#F36A5A','#30A5FF','#1ABC9C'],
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [{
+                    type: 'category',
+                    data: date,
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }],
+                yAxis: [{
+                    type: 'value'
+                }],
+                dataZoom: {
+                    type: 'slider',
+                    show: true,
+                    xAxisIndex: [0],
+                    start: 80,
+                    end: 100
+                },
+                series: [{
+                    name: '高新集群',
+                    type: 'bar',
+                    barWidth: '20%',
+                    data: sqldata
+                },
+                        {
+                    name: '陕西集群',
+                    type: 'bar',
+                    barWidth: '20%',
+                    data: sqldata1
+                },
+                        {
+                    name: '宁夏集群',
+                    type: 'bar',
+                    barWidth: '20%',
+                    data: sqldata2
+                }
+                ]
+            };
         myChart.setOption(option);
+        myChart2.setOption(optionsql);
         setInterval(function () {
             addData1(true);
             myChart1.setOption(option1);
-        },1000)
+
+        }, 1000)
     </script>
 {% endblock %}

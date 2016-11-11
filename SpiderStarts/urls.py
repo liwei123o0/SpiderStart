@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^setspider/',setspider),
     url(r'^setspiderdata/',setspiderdata),
     url(r'^dataspider/',dataspider),
+    url(r'^dataspidertest/',dataspidertest),
     #爬虫规则管理连接
     url(r'^spiderconfigs/',spiderconfigs),
     url(r'^configstomysql/',configstomysql),

@@ -52,7 +52,7 @@
         function addData(shift) {
             timenow = [now.getHours(), now.getMinutes(), now.getSeconds()].join(":");
             date.push(timenow);
-            data.push((Math.random() * 10) + 80);
+            data.push((Math.random() * 5) + 20);
 
             if (shift) {
                 date.shift();
@@ -86,7 +86,7 @@
         function addData2(shift) {
             timenow2 = [now2.getHours(), now2.getMinutes(), now2.getSeconds()].join(":");
             date2.push(timenow2);
-            data2.push((Math.random() * 10) + 60);
+            data2.push((Math.random() * 5) + 15);
 
             if (shift) {
                 date2.shift();

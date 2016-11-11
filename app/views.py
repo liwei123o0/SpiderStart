@@ -317,3 +317,27 @@ def serverSQL(request):
 
 def servernetwork(request):
     return render(request,'servernetwork.html')
+
+def dataspidertest(request):
+
+    conn = MySQLdb.connect(host="192.168.10.24", port=3306, user="root", passwd="root", charset="utf8",
+                           cursorclass=DictCursor)
+    cur = conn.cursor()
+    # 根据表明查字段
+    # cur.execute(
+    #     "SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = '{}' AND table_schema = 'yqapp'".format(
+    #         views))
+    # cur.execute(
+    #     "SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE table_name = 'zbxx' AND table_schema = 'yqapp'")
+    # keyword = cur.fetchall()
+    # cur.execute("SELECT * FROM yqapp.{} LIMIT 10".format(views))
+    cur.execute("SELECT * FROM yqapp.zbxx_gy WHERE name LIKE '%贵阳%' GROUP BY pubtime DESC LIMIT 20 ")
+    spiderdatas = cur.fetchall()
+    # print spiderdata
+    # for k in keyword:
+    #     keywords.append(k[0])
+    # for datas in spiderdata:
+    #     spiderdatas.append(datas)
+    cur.close()
+    conn.close()
+    return render(request, 'dataspider.html', {'spiderdatas': spiderdatas})

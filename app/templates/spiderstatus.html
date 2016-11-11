@@ -11,7 +11,7 @@
             <li class="active">详情</li>
         </ol>
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-12 col-sm-6 col-xs-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <p class="bg-info img-rounded yellow">&nbsp;&nbsp;&nbsp;采集任务等待</p>
@@ -141,7 +141,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-12 col-sm-6 col-xs-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <p class="bg-primary img-rounded green">&nbsp;&nbsp;&nbsp;采集运行状态</p>
@@ -335,7 +335,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-12 col-sm-6 col-xs-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <p class="bg-primary  img-rounded">&nbsp;&nbsp;&nbsp;采集完成状态</p>
@@ -357,6 +357,27 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <tr>
+                                    <td>
+                                        46
+                                    </td>
+                                    <td>
+                                        192.168.10.26
+                                    </td>
+                                    <td>
+                                        yqapp
+                                    </td>
+                                    <td>guiyang</td>
+                                    <td>a80c0098a49e11e68da1000c299b83de</td>
+                                    <td>2016-11-14 4:10:13.365785</td>
+                                    <td>2016-11-14 4:30:13.212574</td>
+                                    <td>贵阳中标信息</td>
+                                    <td>
+                                        <button id="dataguiyang" class="btn btn-info" href=""
+                                                onclick="dataguiyang(this)">查看数据
+                                        </button>
+                                    </td>
+                                </tr>
                                 {% for trs in finishes %}
                                     <tr>
                                         {% for finished in trs %}
@@ -458,6 +479,33 @@
             {#            var dataview = http+"|" + name;#}
             {#            $.get("/dataspider/", {'view': spidername }, #}
             $.get("/dataspider/",
+                    function (data) {
+                        layer.alert(data, {
+                            skin: 'layer-ext-myskin',
+                            btn: '',
+                            title: '数据视图',
+                            area: ['80%', '80%']
+                        });
+                    });//这里返回的类型有：json,html,xml,text
+        }
+        function dataguiyang(o) {
+            var tds = $(o).parent().parent().find("td");
+            var c1, c2;
+            $(tds).each(function (i, td) {
+                if (i == 1) {
+                    c1 = $(this).html();
+                } else if (i == 2) {
+                    c2 = $(this).html();
+                } else if (i == 3) {
+                    c3 = $(this).html();
+                }
+            });
+            {#            var http = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');#}
+            var name = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            var spidername = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
+            {#            var dataview = http+"|" + name;#}
+            {#            $.get("/dataspider/", {'view': spidername }, #}
+            $.get("/dataspidertest/",
                     function (data) {
                         layer.alert(data, {
                             skin: 'layer-ext-myskin',
