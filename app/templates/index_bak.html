@@ -1,0 +1,909 @@
+{% extends 'base_scrapyd.html' %}
+{% block content %}
+    <div id="page-wrapper">
+        <div class="header">
+            <h1 class="page-header">
+                采集项目概况
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/">主页</a></li>
+                <li><a href="/">采集概况</a></li>
+                <li class="active">详情</li>
+            </ol>
+            <div class="row">
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <div class="board">
+                        <div class="panel panel-primary red">
+                            <div class="number">
+                                <h3>
+                                    {#                                    <h3 style="color: #FFFFFF">{{ projects|safe }}</h3>#}
+                                    <h3 style="color: #FFFFFF">17</h3>
+                                    <small style="color: #FFFFFF">应用场景数</small>
+                                </h3>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-eye fa-5x red"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <div class="board">
+                        <div class="panel panel-primary blue">
+                            <div class="number">
+                                <h3>
+                                    {#                                    <h3 style="color: #FFFFFF">{{ spiders|safe }}</h3>#}
+                                    <h3 style="color: #FFFFFF">1056</h3>
+                                    <small style="color: #FFFFFF">采集源总数</small>
+                                </h3>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-shopping-cart fa-5x blue"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <div class="board">
+                        <div class="panel panel-primary green">
+                            <div class="number">
+                                <h3>
+                                    {#                                    <h3 style="color: #FFFFFF">{{ running|safe }}</h3>#}
+                                    <h3 style="color: #FFFFFF">35</h3>
+                                    <small style="color: #FFFFFF">采集运行数</small>
+                                </h3>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-comments fa-5x green"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <div class="board">
+                        <div class="panel panel-primary yellow">
+                            <div class="number">
+                                <h3>
+                                    {#                                    <h3 style="color: #FFFFFF">{{ finished|safe }}</h3>#}
+                                    <h3 style="color: #FFFFFF">2136</h3>
+                                    <small style="color: #FFFFFF">采集完成数</small>
+                                </h3>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-user fa-5x yellow"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <div class="board">
+                        <div class="panel panel-primary red">
+                            <div class="number">
+                                <h3>
+                                    {#                                    <h3 style="color: #FFFFFF">{{ finished|safe }}</h3>#}
+                                    <h3 style="color: #FFFFFF">216</h3>
+                                    <small style="color: #FFFFFF">分级类别数</small>
+                                </h3>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-archive fa-5x red"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <div class="board">
+                        <div class="panel panel-primary blue">
+                            <div class="number">
+                                <h3>
+                                    {#                                    <h3 style="color: #FFFFFF">{{ finished|safe }}</h3>#}
+                                    <h3 style="color: #FFFFFF">3</h3>
+                                    <small style="color: #FFFFFF">分布式集群数</small>
+                                </h3>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-cog fa-spin fa-5x blue"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">全国互联网采集情况图</div>
+                <div id="map" style="height: 800px;">
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">实时入库量</div>
+                <div id="sql" style="height: 400px;">
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">系统负载状态</div>
+                <div class="row">
+                    <div id="main" class="col-lg-5 col-sm-5" style="width: 500px;height:400px;">
+                    </div>
+                    <div id="main1" class="col-lg-5 col-sm-5" style="width: 500px;height:400px;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="main2" class="col-lg-5 col-sm-5" style="width: 500px;height:400px;">
+                    </div>
+                    <div id="main3" class="col-lg-5 col-sm-5" style="width: 500px;height:400px;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="main4" class="col-lg-5 col-sm-5" style="width: 500px;height:400px;">
+                    </div>
+                    <div id="main5" class="col-lg-5 col-sm-5" style="width: 500px;height:400px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>Copyright &copy; 2016西部资信
+        </footer>
+    </div>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript" src="../static/assets/js/china.js"></script>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        var myChart1 = echarts.init(document.getElementById('main1'));
+        var myChart2 = echarts.init(document.getElementById('main2'));
+        var myChart3 = echarts.init(document.getElementById('main3'));
+        var myChart4 = echarts.init(document.getElementById('main4'));
+        var myChart5 = echarts.init(document.getElementById('main5'));
+        var myChart6 = echarts.init(document.getElementById('map'));
+        var myChart7 = echarts.init(document.getElementById('sql'));
+
+        var oneDay1 = 1000;
+        var now1 = new Date();
+        var date1 = [];
+        var data1 = [Math.random() * 100];
+
+        function addData1(shift) {
+            timenow1 = [now1.getHours(), now1.getMinutes(), now1.getSeconds()].join(":");
+            date1.push(timenow1);
+            data1.push((Math.random() * 80) + 300);
+
+            if (shift) {
+                date1.shift();
+                data1.shift();
+            }
+
+            now1 = new Date(+new Date(now1) + oneDay1);
+        }
+
+        for (var i = 1; i < 30; i++) {
+            addData1();
+        }
+
+        option = {
+            title: [{
+                text: '',
+                left: '30%'
+            },
+                {
+                    text: '192.168.10.24',
+                    textStyle: {
+                        fontSize: 14
+                    },
+                    left: '30%',
+                    top: '80%'
+                }
+            ],
+            tooltip: {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            axisLine: {            // 坐标轴线
+                lineStyle: {       // 属性lineStyle控制线条样式
+                    width: 8
+                }
+            },
+            series: [
+                {
+                    name: '内存',
+                    type: 'gauge',
+                    center: ['20%', '55%'],    // 默认全局居中
+                    radius: '35%',
+                    min: 0,
+                    max: 8,
+                    endAngle: 45,
+                    splitNumber: 8,
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            width: 8
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        length: 12,        // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    splitLine: {           // 分隔线
+                        length: 20,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    pointer: {
+                        width: 5
+                    },
+                    title: {
+                        offsetCenter: [0, '-20%']       // x, y，单位px
+                    },
+                    detail: {
+                        textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder'
+                        }
+                    },
+                    data: [{value: 6.3, name: '内存/GB'}]
+                },
+                {
+                    name: '负载状态',
+                    type: 'gauge',
+                    radius: '55%',
+                    detail: {formatter: '{value}%'},
+                    data: [{value: 50, name: 'CPU使用率'}]
+                }
+            ]
+        };
+        option1 = {
+            title: [{
+                text: '',
+                left: '30%'
+            },
+                {
+                    text: '192.168.10.25',
+                    textStyle: {
+                        fontSize: 14
+                    },
+                    left: '30%',
+                    top: '80%'
+                }
+            ],
+            tooltip: {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            axisLine: {            // 坐标轴线
+                lineStyle: {       // 属性lineStyle控制线条样式
+                    width: 8
+                }
+            },
+            series: [
+                {
+                    name: '内存',
+                    type: 'gauge',
+                    center: ['20%', '55%'],    // 默认全局居中
+                    radius: '35%',
+                    min: 0,
+                    max: 8,
+                    endAngle: 45,
+                    splitNumber: 8,
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            width: 8
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        length: 12,        // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    splitLine: {           // 分隔线
+                        length: 20,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    pointer: {
+                        width: 5
+                    },
+                    title: {
+                        offsetCenter: [0, '-20%']       // x, y，单位px
+                    },
+                    detail: {
+                        textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder'
+                        }
+                    },
+                    data: [{value: 6.3, name: '内存/GB'}]
+                },
+                {
+                    name: '负载状态',
+                    type: 'gauge',
+                    radius: '55%',
+                    detail: {formatter: '{value}%'},
+                    data: [{value: 50, name: 'CPU使用率'}]
+                }
+            ]
+        };
+        option2 = {
+            title: [{
+                text: '',
+                left: '30%'
+            },
+                {
+                    text: '192.168.10.26',
+                    textStyle: {
+                        fontSize: 14
+                    },
+                    left: '30%',
+                    top: '80%'
+                }
+            ],
+            tooltip: {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            axisLine: {            // 坐标轴线
+                lineStyle: {       // 属性lineStyle控制线条样式
+                    width: 8
+                }
+            },
+            series: [
+                {
+                    name: '内存',
+                    type: 'gauge',
+                    center: ['20%', '55%'],    // 默认全局居中
+                    radius: '35%',
+                    min: 0,
+                    max: 8,
+                    endAngle: 45,
+                    splitNumber: 8,
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            width: 8
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        length: 12,        // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    splitLine: {           // 分隔线
+                        length: 20,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    pointer: {
+                        width: 5
+                    },
+                    title: {
+                        offsetCenter: [0, '-20%']       // x, y，单位px
+                    },
+                    detail: {
+                        textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder'
+                        }
+                    },
+                    data: [{value: 6.3, name: '内存/GB'}]
+                },
+                {
+                    name: '负载状态',
+                    type: 'gauge',
+                    radius: '55%',
+                    detail: {formatter: '{value}%'},
+                    data: [{value: 50, name: 'CPU使用率'}]
+                }
+            ]
+        };
+        option3 = {
+            title: [{
+                text: '',
+                left: '30%'
+            },
+                {
+                    text: '192.168.10.27',
+                    textStyle: {
+                        fontSize: 14
+                    },
+                    left: '30%',
+                    top: '80%'
+                }
+            ],
+            tooltip: {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            axisLine: {            // 坐标轴线
+                lineStyle: {       // 属性lineStyle控制线条样式
+                    width: 8
+                }
+            },
+            series: [
+                {
+                    name: '内存',
+                    type: 'gauge',
+                    center: ['20%', '55%'],    // 默认全局居中
+                    radius: '35%',
+                    min: 0,
+                    max: 8,
+                    endAngle: 45,
+                    splitNumber: 8,
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            width: 8
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        length: 12,        // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    splitLine: {           // 分隔线
+                        length: 20,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    pointer: {
+                        width: 5
+                    },
+                    title: {
+                        offsetCenter: [0, '-20%']       // x, y，单位px
+                    },
+                    detail: {
+                        textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder'
+                        }
+                    },
+                    data: [{value: 6.3, name: '内存/GB'}]
+                },
+                {
+                    name: '负载状态',
+                    type: 'gauge',
+                    radius: '55%',
+                    detail: {formatter: '{value}%'},
+                    data: [{value: 50, name: 'CPU使用率'}]
+                }
+            ]
+        };
+        option4 = {
+            title: [{
+                text: '',
+                left: '30%'
+            },
+                {
+                    text: '192.168.10.28',
+                    textStyle: {
+                        fontSize: 14
+                    },
+                    left: '30%',
+                    top: '80%'
+                }
+            ],
+            tooltip: {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            axisLine: {            // 坐标轴线
+                lineStyle: {       // 属性lineStyle控制线条样式
+                    width: 8
+                }
+            },
+            series: [
+                {
+                    name: '内存',
+                    type: 'gauge',
+                    center: ['20%', '55%'],    // 默认全局居中
+                    radius: '35%',
+                    min: 0,
+                    max: 8,
+                    endAngle: 45,
+                    splitNumber: 8,
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            width: 8
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        length: 12,        // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    splitLine: {           // 分隔线
+                        length: 20,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    pointer: {
+                        width: 5
+                    },
+                    title: {
+                        offsetCenter: [0, '-20%']       // x, y，单位px
+                    },
+                    detail: {
+                        textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder'
+                        }
+                    },
+                    data: [{value: 6.3, name: '内存/GB'}]
+                },
+                {
+                    name: '负载状态',
+                    type: 'gauge',
+                    radius: '55%',
+                    detail: {formatter: '{value}%'},
+                    data: [{value: 50, name: 'CPU使用率'}]
+                }
+            ]
+        };
+        option5 = {
+            title: [{
+                text: '',
+                left: '30%'
+            },
+                {
+                    text: '192.168.10.29',
+                    textStyle: {
+                        fontSize: 14
+                    },
+                    left: '30%',
+                    top: '80%'
+                }
+            ],
+            tooltip: {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            axisLine: {            // 坐标轴线
+                lineStyle: {       // 属性lineStyle控制线条样式
+                    width: 8
+                }
+            },
+            series: [
+                {
+                    name: '内存',
+                    type: 'gauge',
+                    center: ['20%', '55%'],    // 默认全局居中
+                    radius: '35%',
+                    min: 0,
+                    max: 8,
+                    endAngle: 45,
+                    splitNumber: 8,
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            width: 8
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        length: 12,        // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    splitLine: {           // 分隔线
+                        length: 20,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: 'auto'
+                        }
+                    },
+                    pointer: {
+                        width: 5
+                    },
+                    title: {
+                        offsetCenter: [0, '-20%']       // x, y，单位px
+                    },
+                    detail: {
+                        textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            fontWeight: 'bolder'
+                        }
+                    },
+                    data: [{value: 6.3, name: '内存/GB'}]
+                },
+                {
+                    name: '负载状态',
+                    type: 'gauge',
+                    radius: '55%',
+                    detail: {formatter: '{value}%'},
+                    data: [{value: 50, name: 'CPU使用率'}]
+                }
+            ]
+        };
+        var geoCoordMap = {
+            '北京': [116.4551, 40.2539],
+            '天津': [117.4219, 39.4189],
+            '河北': [114.4995, 38.1006],
+            '山西': [112.3352, 37.9413],
+            '内蒙古': [111.4124, 40.4901],
+            '辽宁': [123.1238, 42.1216],
+            '吉林': [125.8154, 44.2584],
+            '黑龙江': [127.9688, 45.368],
+            '上海': [121.4648, 31.2891],
+            '江苏': [118.8062, 31.9208],
+            '浙江': [119.5313, 29.8773],
+            '安徽': [117.29, 32.0581],
+            '福建': [119.4543, 25.9222],
+            '江西': [116.0046, 28.6633],
+            '山东': [117.1582, 36.8701],
+            '河南': [113.4668, 34.6234],
+            '湖北': [114.3896, 30.6628],
+            '湖南': [113.0823, 28.2568],
+            '广东': [113.5107, 23.2196],
+            '广西': [108.479, 23.1152],
+            '海南': [110.3893, 19.8516],
+            '重庆': [107.7539, 30.1904],
+            '四川': [103.9526, 30.7617],
+            '贵州': [106.6992, 26.7682],
+            '云南': [102.9199, 25.4663],
+            '西藏': [91.1865, 30.1465],
+            '陕西': [109.1162, 34.2004],
+            '甘肃': [103.5901, 36.3043],
+            '青海': [101.4038, 36.8207],
+            '宁夏': [106.3586, 38.1775],
+            '新疆': [87.9236, 43.5883]
+        };
+
+        var list = [
+            {name: '北京', cons: 3304, apct: 3305},
+            {name: '天津', cons: 2024, apct: 2164},
+            {name: '河北', cons: 1334, apct: 1334},
+            {name: '山西', cons: 1004, apct: 1664},
+            {name: '内蒙古', cons: 1804, apct: 1904},
+            {name: '辽宁', cons: 1604, apct: 1538},
+            {name: '吉林', cons: 1338, apct: 2330},
+            {name: '黑龙江', cons: 1528, apct: 1558},
+            {name: '上海', cons: 3523, apct: 4528},
+            {name: '江苏', cons: 2523, apct: 2663},
+            {name: '浙江', cons: 2324, apct: 1972},
+            {name: '安徽', cons: 1423, apct: 1176},
+            {name: '福建', cons: 3166, apct: 2166},
+            {name: '江西', cons: 1236, apct: 1432},
+            {name: '山东', cons: 2156, apct: 1851},
+            {name: '河南', cons: 2351, apct: 2391},
+            {name: '湖北', cons: 2435, apct: 2321},
+            {name: '湖南', cons: 1563, apct: 1643},
+            {name: '广东', cons: 3256, apct: 3752},
+            {name: '广西', cons: 1646, apct: 1356},
+            {name: '海南', cons: 2134, apct: 1906},
+            {name: '重庆', cons: 2351, apct: 3217},
+            {name: '四川', cons: 2352, apct: 2683},
+            {name: '贵州', cons: 2153, apct: 1242},
+            {name: '云南', cons: 2467, apct: 2362},
+            {name: '西藏', cons: 903, apct: 1031},
+            {name: '陕西', cons: 200983, apct: 235214},
+            {name: '甘肃', cons: 2321, apct: 2659},
+            {name: '青海', cons: 2321, apct: 1853},
+            {name: '宁夏', cons: 1798, apct: 1682},
+            {name: '新疆', cons: 784, apct: 972}
+        ];
+
+        var convertData = function (data) {
+            var res = [];
+            res = data.map(function (dataItem) {
+                var res = {};
+                var fromCoord = geoCoordMap[dataItem.name];
+                var toCoord = geoCoordMap['陕西'];
+                var b = fromCoord && toCoord;
+                if (fromCoord && toCoord) {
+                    return {
+                        fromName: dataItem.name,
+                        toName: '陕西',
+                        coords: [fromCoord, toCoord]
+                    };
+                }
+                return res;
+            });
+            return res;
+        };
+
+        var color = ['#5E7AA9', '#1e90ff', '#46bee9'];
+        var series = [];
+        var key = ['cons', 'acpt'];
+        var keyname = ['今日采集', '昨日采集'];
+        for (var i = 0; i < key.length; i++) {
+            series.push(
+                    {
+                        name: keyname[i],
+                        type: 'lines',
+                        zlevel: 2,
+                        effect: {
+                            show: true,
+                            period: 6,
+                            constantSpeed: 50,
+                            trailLength: 0.4,
+                            color: '#F9FAFD',
+                            symbolSize: 5
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: color[i],
+                                width: 0,
+                                curveness: 0.2
+                            }
+                        },
+                        data: convertData(list)
+                    },
+                    {
+                        name: keyname[i],
+                        type: 'lines',
+                        zlevel: 1,
+                        effect: {
+                            show: true,
+                            period: 6,
+                            trailLength: 0,
+                            symbol: 'image://',
+                            symbolSize: 15
+                        },
+                        label: {
+                            emphasis: {
+                                show: true
+
+                            }
+                        },
+                        lineStyle: {
+                            normal: {
+                                color: color[i],
+                                width: 3,
+                                opacity: 0.8,
+                                curveness: 0.2
+                            },
+                            emphasis: {
+                                color: color[i],
+                                shadowColor: 'rgba(0, 0, 0, 0.5)',
+                                shadowBlur: 10,
+                                width: 6
+                            }
+                        },
+                        data: convertData(list)
+                    },
+                    {
+                        name: keyname[i],
+                        type: 'effectScatter',
+                        coordinateSystem: 'geo',
+                        zlevel: 2,
+                        rippleEffect: {
+                            period: 10,
+                            scale: 5,
+                            brushType: 'stroke'
+                        },
+                        symbolSize: function (val) {
+                            if ([val[0], val[1]].toString() == geoCoordMap['陕西'].toString()) {
+                                return 20;
+                            }
+                            return 5;
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: color[i]
+                            }
+                        },
+                        data: list.map(function (dataItem) {
+                            return {
+                                name: dataItem.name,
+                                value: geoCoordMap[dataItem.name].concat([dataItem[key[i]]])
+                            };
+                        })
+                    }
+            );
+        }
+
+        optionmap = {
+            title: {
+                text: '全国数据采集范围流向图',
+                subtext: '采集数据量',
+                left: 'center',
+                textStyle: {
+                    fontSize: 28,
+                    color: '#000'
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function (params) {
+                    var res = '';
+                    if (params.seriesType == 'lines') {
+                        res = params.data.fromName + ' > ' + params.data.toName;
+                    } else if (params.seriesType == 'effectScatter') {
+                        res = params.data.name + '：' + params.data.value[2];
+                    }
+                    //console.log(params);
+                    return res;
+                }
+            },
+            legend: {
+                orient: 'vertical',
+                top: 'bottom',
+                left: 'right',
+                data: ['今日采集', '昨日采集'],
+                textStyle: {
+                    fontSize: 18,
+                    color: '#51C332'
+                },
+                selectedMode: 'single'
+            },
+            geo: {
+                map: 'china',
+                label: {
+                    emphasis: {
+                        show: false
+                    }
+                },
+                roam: false,
+                zoom: 1.2,
+                itemStyle: {
+                    normal: {
+                        areaColor: '#F0F2F5',
+                        borderColor: ''
+                    },
+                    emphasis: {
+                        areaColor: '#F79092'
+                    }
+                }
+            },
+            series: series
+        };
+
+        optionsql = {
+            title: [
+                {
+                    text: '实时入库量',
+                    textStyle: {
+                        fontSize: 24
+                    },
+                    left: '50%'
+                }
+            ],
+            xAxis: {
+                type: 'category',
+                name: '时间',
+                boundaryGap: false,
+                data: date1
+            },
+            yAxis: {
+                name: '条/S',
+                boundaryGap: [0, '50%'],
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '网络流量',
+                    type: 'line',
+                    itemStyle: {
+                        normal: {
+                            color: '#51C332'
+                        }
+                    },
+                    smooth: true,
+                    symbol: 'none',
+                    areaStyle: {
+                        normal: {}
+                    },
+                    data: data1
+                }
+            ]
+        };
+
+        setInterval(function () {
+            addData1(true);
+            option.series[0].data[0].value = (Math.random() * 2 + 6).toFixed(2) - 0;
+            option.series[1].data[0].value = Math.floor(Math.random() * 40) + 50;
+            option1.series[0].data[0].value = (Math.random() * 1 + 6).toFixed(2) - 0;
+            option1.series[1].data[0].value = Math.floor(Math.random() * 30) + 50;
+            option2.series[0].data[0].value = (Math.random() * 2 + 5).toFixed(2) - 0;
+            option2.series[1].data[0].value = Math.floor(Math.random() * 30) + 50;
+            option3.series[0].data[0].value = (Math.random() * 2 + 6).toFixed(2) - 0;
+            option3.series[1].data[0].value = Math.floor(Math.random() * 40) + 50;
+            option4.series[0].data[0].value = (Math.random() * 1 + 6).toFixed(2) - 0;
+            option4.series[1].data[0].value = Math.floor(Math.random() * 30) + 50;
+            option5.series[0].data[0].value = (Math.random() * 2 + 5).toFixed(2) - 0;
+            option5.series[1].data[0].value = Math.floor(Math.random() * 30) + 50;
+            myChart.setOption(option);
+            myChart1.setOption(option1);
+            myChart2.setOption(option2);
+            myChart3.setOption(option3);
+            myChart4.setOption(option4);
+            myChart5.setOption(option5);
+            myChart7.setOption(optionsql);
+        }, 1000);
+        myChart6.setOption(optionmap);
+    </script>
+{% endblock %}

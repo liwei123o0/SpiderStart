@@ -363,9 +363,10 @@ def datazbxx(request):
                            cursorclass=DictCursor)
     cur = conn.cursor()
     cur.execute("SELECT XB_URL AS 'url',XB_TITLE AS '标题',XB_PM AS '品目',XB_XMLXR AS '项目联系人',XB_XMLXDH AS '项目联系人电话',\
- XB_CGDW AS '采购单位',XB_CGDWDZ AS '采购单位地址', XB_CGDWLXFS AS '采购单位联系方式',\
-  XB_ZBRQ AS '中标日期',XB_ZBJE AS '中标金额',XB_KBSJ AS '开标时间',XB_CONTENT AS '内容',XB_REGION AS '地区' FROM xbzx.zhaobiao_xy_bak GROUP BY XB_PUBTIME DESC LIMIT 20 ")
+XB_CGDW AS '采购单位',XB_CGDWDZ AS '采购单位地址', XB_CGDWLXFS AS '采购单位联系方式',\
+XB_ZBRQ AS '中标日期',XB_ZBJE AS '中标金额',XB_KBSJ AS '开标时间',XB_CONTENT AS '内容',XB_REGION AS '地区' FROM xbzx.zhaobiao_xy_bak GROUP BY XB_PUBTIME DESC LIMIT 20 ")
     spiderdatas = cur.fetchall()
     cur.close()
     conn.close()
     return render(request, 'dataspider.html', {'spiderdatas': spiderdatas})
+

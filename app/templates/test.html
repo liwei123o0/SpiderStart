@@ -3,17 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<script type="text/javascript">
-    var now = new Date();
-    var date = [now.getHours(),now.getMinutes(),now.getSeconds(),now.getMilliseconds()].join(":");
-    console.info(date);
-    var base = +new Date(now.getHours(),now.getMinutes(),now.getSeconds(),now.getMilliseconds());
-    var now1 = new Date(base);
-    console.info(now1);
-    var distancetime = new Date(new Date().getTime() - 1000*60);
-    console.info(distancetime)
-</script>
+    <script src="../static/assets/jquery-1.9.1.min.js"></script>
+    <script src="../static/assets/js/echarts.min.js"></script>
+    <script type="text/javascript" src="../static/assets/js/china.js"></script>
 </head>
 <body>
+
+<div id="mapspider" style="height: 400px;">
+</div>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('mapspider'));
+    option = {
+            title: {
+                text: '世界人口总量',
+                subtext: '数据来自网络'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {
+                data: ['2011年']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
+            },
+            series: [
+                {
+                    name: '2012年',
+                    type: 'bar',
+                    data: [19325, 23438, 31000, 121594, 134141, 681807]
+                }
+            ]
+        };
+    myChart.setOption(option);
+</script>
 </body>
 </html>
