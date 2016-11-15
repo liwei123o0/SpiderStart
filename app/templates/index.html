@@ -34,7 +34,7 @@
                                 <h3>
                                     {#                                    <h3 style="color: #FFFFFF">{{ spiders|safe }}</h3>#}
                                     <h3 style="color: #FFFFFF">1056</h3>
-                                    <small style="color: #FFFFFF">采集源总数</small>
+                                    <small style="color: #FFFFFF">采集源总数分布图</small>
                                 </h3>
                             </div>
                             <div class="icon">
@@ -371,7 +371,7 @@
             });
             $("#demo3").click(function () {
                 $(".demoView").css("display", "none");
-               $("#demoView3").filter(':not(:animated)').slideDown(1000);
+                $("#demoView3").filter(':not(:animated)').slideDown(1000);
             });
             {#            $("#demo4").click(function () {#}
             {#                $(".demoView").css("display", "none");#}
@@ -1348,6 +1348,15 @@
                     color: '#fff'
                 }
             },
+            visualMap: {
+                min: 0,
+                max: 150,
+                calculable: true,
+                color: ['#5CB85C', '#5BC0DE', '#D9534F'],
+                textStyle: {
+                    color: '#fff'
+                }
+            },
             geo: {
                 map: 'china',
                 label: {
@@ -1508,7 +1517,7 @@
                     ]),
                     symbolSize: function (value) {
                         console.log(value);
-                        return value[2] / 8;
+                        return value[2] / 10;
                     },
                     label: {
                         normal: {
