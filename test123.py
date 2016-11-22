@@ -2,12 +2,10 @@
 #! /usr/bin/env python
 from SpiderStarts.settings import conf
 
-crawlspider = {'192.168.10.24': [{'name': 'spider123', 'spiders': [u'ccgpz', u'ccgpz_big', u'ccgpz_gg', u'ccgpz_xy']}]}
+import requests
+import json
 
-for c in conf:
-    if crawlspider.has_key(c['http']):
-        cout = 1
-        for spider in  crawlspider[c['http']][0]['spiders']:
-            cra = cout,c['name'],spider,c['http']
-            print cra
-            cout+=1
+project = json.loads(
+    requests.get("http://192.168.10.25:6800/listjobs.json?project=app").content
+)
+print project['status']

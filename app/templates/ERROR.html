@@ -1,0 +1,26 @@
+{% extends 'base_scrapyd.html' %}
+{% block title %}
+    <title>错误信息</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div id="page-wrapper">
+        <div class="header">
+            <h1 class="page-header">
+                错误信息
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/">主页</a></li>
+                <li><a href="#">错误信息</a></li>
+                <li class="active">详情</li>
+            </ol>
+            <div>
+                <h2>{{ error|safe }}</h2>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -136,17 +136,26 @@ def spiderstatus(request):
     coutp = 0
     coutr = 0
     coutf = 0
+
     for c in conf:
+
         try:
             project = json.loads(
                 requests.get("http://%s:%s/listjobs.json?project=%s" % (c['http'], c['prot'], c['name']),
                              timeout=1).content)
+
         except:
             status = 'no'
             project = {}
+
+        if project['status'] == 'error':
+            print project['status']
+            error = u'服务器:%s<br>项目名为:%s<br>无法正常加载!<br>错误信息:%s<br>请检查配置文件!' % (
+                c['http'], project['message'], project['node_name'])
+            return render(request, 'ERROR.html', {'error': error})
+
         projects[c['http']] = {'finished': project['finished'], 'running': project['running'],
                                'pending': project['pending']}
-        # cout +=len(project['pending'])
         if projects.has_key(c['http']):
             for pending in projects[c['http']]['pending']:
                 coutp += 1
@@ -369,4 +378,3 @@ XB_ZBRQ AS '中标日期',XB_ZBJE AS '中标金额',XB_KBSJ AS '开标时间',XB
     cur.close()
     conn.close()
     return render(request, 'dataspider.html', {'spiderdatas': spiderdatas})
-
