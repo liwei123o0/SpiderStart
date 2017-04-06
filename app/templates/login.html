@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>登陆界面</title>
+    <meta charset="UTF-8"/>
+    <meta name="Designer" content="PremiumPixels.com">
+    <meta name="Author" content="$hekh@r d-Ziner, CSSJUNTION.com">
+    <link rel="stylesheet" type="text/css" href="../static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/structure.css">
+</head>
+
+<body>
+<form class="box login" method="post" action="/login_view/">
+    {% csrf_token %}
+    <fieldset class="boxBody">
+        <label>用户名</label>
+        <input type="text" tabindex="1" name="username" placeholder="PremiumPixel" required>
+        <label>密码</label>
+        <input type="password" name="password" tabindex="2" required>
+    </fieldset>
+    <footer>
+        <label><p style="color: #ff3854;">{{ message }}</p></label>
+        <input type="submit" class="btnLogin" value="登陆" tabindex="4">
+    </footer>
+</form>
+<footer id="main">
+    <a href="http://www.westcredit.cn/">版权所有©2016 陕西西部资信股份有限公司所有 </a>
+</footer>
+</body>
+</html>

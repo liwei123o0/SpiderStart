@@ -374,17 +374,38 @@
                                     <td>
                                         yqapp
                                     </td>
-                                    <td>guiyang</td>
+                                    <td>neimeng</td>
                                     <td>a80c0098a49e11e68da1000c299b83de</td>
                                     <td>2016-11-14 4:10:13.365785</td>
                                     <td>2016-11-14 4:30:13.212574</td>
-                                    <td>贵阳中标信息</td>
+                                    <td>内蒙中标信息</td>
                                     <td>
                                         <button id="dataguiyang" class="btn btn-info" href=""
-                                                onclick="dataguiyang(this)">查看数据
+                                                onclick="dataneimeng(this)">查看数据
                                         </button>
                                     </td>
                                 </tr>
+{#                                <tr>#}
+{#                                    <td>#}
+{#                                        1#}
+{#                                    </td>#}
+{#                                    <td>#}
+{#                                        192.168.10.26#}
+{#                                    </td>#}
+{#                                    <td>#}
+{#                                        yqapp#}
+{#                                    </td>#}
+{#                                    <td>guiyang</td>#}
+{#                                    <td>a80c0098a49e11e68da1000c299b83de</td>#}
+{#                                    <td>2016-11-14 4:10:13.365785</td>#}
+{#                                    <td>2016-11-14 4:30:13.212574</td>#}
+{#                                    <td>贵阳中标信息</td>#}
+{#                                    <td>#}
+{#                                        <button id="dataguiyang" class="btn btn-info" href=""#}
+{#                                                onclick="dataguiyang(this)">查看数据#}
+{#                                        </button>#}
+{#                                    </td>#}
+{#                                </tr>#}
                                 <tr>
 
                                     <td>2</td>
@@ -908,6 +929,7 @@
                 </div>
             </div>
         </div>
+    <img src="../static/img/crawl.png" style="text-align: right">
     </div>
 
 
@@ -973,7 +995,34 @@
                         });
                     });//这里返回的类型有：json,html,xml,text
         }
-        function dataguiyang(o) {
+{#        function dataguiyang(o) {#}
+{#            var tds = $(o).parent().parent().find("td");#}
+{#            var c1, c2;#}
+{#            $(tds).each(function (i, td) {#}
+{#                if (i == 1) {#}
+{#                    c1 = $(this).html();#}
+{#                } else if (i == 2) {#}
+{#                    c2 = $(this).html();#}
+{#                } else if (i == 3) {#}
+{#                    c3 = $(this).html();#}
+{#                }#}
+{#            });#}
+            {#            var http = c1.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');#}
+{#            var name = c2.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');#}
+{#            var spidername = c3.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');#}
+            {#            var dataview = http+"|" + name;#}
+            {#            $.get("/dataspider/", {'view': spidername }, #}
+{#            $.get("/dataspidertest/",#}
+{#                    function (data) {#}
+{#                        layer.alert(data, {#}
+{#                            skin: 'layer-ext-myskin',#}
+{#                            btn: '',#}
+{#                            title: '数据视图',#}
+{#                            area: ['80%', '80%']#}
+{#                        });#}
+{#                    });//这里返回的类型有：json,html,xml,text#}
+{#        }#}
+        function dataneimeng(o) {
             var tds = $(o).parent().parent().find("td");
             var c1, c2;
             $(tds).each(function (i, td) {

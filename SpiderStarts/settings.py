@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#! /usr/bin/env python
+# ! /usr/bin/env python
 """
 Django settings for SpiderStarts project.
 
@@ -15,15 +15,14 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 import djcelery
 
-#加入消息任务队列
+# 加入消息任务队列
 djcelery.setup_loader()
-#中间人数据库
+# 中间人数据库
 BROKER_URL = 'django://'
-#设置异步任务时区
-CELERY_TIMEZONE='Asia/Shanghai'
+# 设置异步任务时区
+CELERY_TIMEZONE = 'Asia/Shanghai'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -36,7 +35,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -48,16 +46,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'app',
-    #异步消息队列模块
+    # 异步消息队列模块
     'djcelery',
-    'kombu.transport.django' ,
+    'kombu.transport.django',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -83,17 +82,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SpiderStarts.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # MySQL信息配置
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'scrapyadmin',
+        'USER':'root',
+        'PASSWORD':'root',
+        'HOST':'localhost',
+        'PORT':'3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -113,14 +117,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE='Asia/Shanghai'
-
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -129,8 +131,8 @@ USE_L10N = True
 USE_TZ = True
 
 conf = [
-    {"name":"spider123","http":"192.168.10.24","prot":"6800"},
-    {"name":"app","http":"192.168.10.25","prot":"6800"}
+    {"name": "spider123", "http": "192.168.10.24", "prot": "6800"},
+    {"name": "yqapp", "http": "192.168.10.25", "prot": "6800"}
 ]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/

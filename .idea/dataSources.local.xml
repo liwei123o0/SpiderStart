@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - scrapyadmin@localhost" uuid="7fdc63b5-238e-4610-86a4-3f50fe8da210">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>scrapy.*</schema-pattern>
+      <default-schemas>scrapy.*</default-schemas>
+    </data-source>
+  </component>
+</project>

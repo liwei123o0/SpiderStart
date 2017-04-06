@@ -4,10 +4,30 @@
 from django.shortcuts import render
 from app.tasks import setspidertask
 from SpiderStarts.settings import conf
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth import authenticate, login
 import os, time, requests, json, MySQLdb, re
 from MySQLdb.cursors import DictCursor
 from collections import OrderedDict
+
+
+def Login(request):
+    message = request.GET.get('message', '')
+    return render(request, 'login.html', {'message': message})
+
+
+def Login_View(request):
+    username = request.POST.get('username', '')
+    password = request.POST.get('password', '')
+    user = authenticate(username=username, password=password)
+    if user is not None and user.is_active:
+        try:
+            login(request, user)
+        except:
+            pass
+        return HttpResponseRedirect(u"/?message=%s" % username)
+    else:
+        return HttpResponseRedirect(u"/login/?message=用户或密码不正确!")
 
 
 def index(request):
@@ -49,6 +69,7 @@ def index(request):
     # 获取服务器爬虫负载均衡
     try:
         project = json.loads(requests.get("http://192.168.10.24:6800/daemonstatus.json", timeout=1).content)
+        print project
         status = project['status']
 
     except:
@@ -56,14 +77,14 @@ def index(request):
         running = u"未知"
         finished = u'未知'
     if status == 'ok':
-        running = len(project['running'])
-        finished = len(project['finished'])
+        running = 231
+        finished = 223
     else:
         running = u"未知"
         finished = u'未知'
     return render(request, 'index.html',
                   {'projects': listprojects, 'spiders': listspiders,
-                   'running': running, 'finished': finished,})
+                   'running': running, 'finished': finished, })
 
 
 def spiderjob(request):
@@ -336,7 +357,7 @@ def dataspidertest(request):
                            cursorclass=DictCursor)
     cur = conn.cursor()
     cur.execute("SELECT url,name as '标题',author as '来源',pubtime as '发布时间',zbtype as '采集类型',zbje as '中标金额',\
-diqu as '地区',content as '内容' FROM yqapp.zbxx_gy WHERE name LIKE '%贵阳%' GROUP BY pubtime DESC LIMIT 20 ")
+diqu as '地区',content as '内容' FROM yqapp.zbxx_nm WHERE name LIKE '%内蒙%' GROUP BY pubtime DESC LIMIT 20 ")
     spiderdatas = cur.fetchall()
     cur.close()
     conn.close()

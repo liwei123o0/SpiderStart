@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - scrapyadmin@localhost" uuid="7fdc63b5-238e-4610-86a4-3f50fe8da210">
+    <database-info product="MySQL" version="5.6.21-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
+      <schema id="1" name="scrapy"/>
+      <table id="2" parent="1" name="bak"/>
+      <table id="3" parent="1" name="gsbasic"/>
+      <table id="4" parent="1" name="xingzheng"/>
+      <table id="5" parent="1" name="zbxx"/>
+      <table id="6" parent="1" name="zbxx_temp"/>
+      <table id="7" parent="1" name="zhaotoubiao"/>
+      <routine id="8" parent="1" name="insert_date">
+        <routine-kind>PROCEDURE</routine-kind>
+      </routine>
+      <column id="9" parent="2" name="id">
+        <comment>索引id</comment>
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="10" parent="2" name="crl_30101001">
+        <comment>URL</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="11" parent="2" name="crl_30101002">
+        <comment>公告原文</comment>
+        <data-type>text</data-type>
+      </column>
+      <column id="12" parent="2" name="crl_30101003">
+        <comment>网站名称</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="13" parent="2" name="crl_30101004">
+        <comment>网站类型</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="14" parent="2" name="insert_time">
+        <comment>入库时间</comment>
+        <data-type>timestamp</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <index id="15" parent="2" name="url">
+        <columns>crl_30101001</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="16" parent="2" name="PRIMARY">
+        <columns>id
+crl_30101001</columns>
+        <primary>1</primary>
+      </key>
+      <key id="17" parent="2" name="url">
+        <columns>crl_30101001</columns>
+        <underlying-index>url</underlying-index>
+      </key>
+      <column id="18" parent="3" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="19" parent="3" name="name">
+        <comment>企业名称</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="20" parent="3" name="XY30101001">
+        <comment>URL</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="21" parent="3" name="XY10101001">
+        <comment>联系电话别码</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="22" parent="3" name="XY10102014">
+        <comment>联系电话</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="23" parent="3" name="XY10111006">
+        <comment>电子邮箱</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="24" parent="3" name="XY10405003">
+        <comment>网站地址</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="25" parent="3" name="XY10101007">
+        <comment>法定代表人（负责人）姓名</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="26" parent="3" name="XY10102001">
+        <comment>注册资本</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="27" parent="3" name="XY10102004">
+        <comment>成立日期</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="28" parent="3" name="XY10101013">
+        <comment>信用主体状态</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="29" parent="3" name="XY10101014">
+        <comment>所属行业</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="30" parent="3" name="XY10101003">
+        <comment>登记证号</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="31" parent="3" name="XY10101012">
+        <comment>企业类型</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="32" parent="3" name="XY10101004">
+        <comment>组织机构代码</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="33" parent="3" name="XY10102005">
+        <comment>经营期限起</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="34" parent="3" name="XY10102006">
+        <comment>经营期限止</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="35" parent="3" name="XY10102008">
+        <comment>登记机关</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="36" parent="3" name="XY10102009">
+        <comment>核准日期</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="37" parent="3" name="XY10101002">
+        <comment>统一社会信用代码</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="38" parent="3" name="XY10101010">
+        <comment>住所</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="39" parent="3" name="XY10102003">
+        <comment>经营范围</comment>
+        <data-type>text</data-type>
+      </column>
+      <column id="40" parent="3" name="XY10110001">
+        <comment>投资人名称</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="41" parent="3" name="XY10110005">
+        <comment>认缴出资额（万元）</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="42" parent="3" name="XY10109001">
+        <comment>高管姓名</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="43" parent="3" name="XY10109004">
+        <comment>高管职务</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="44" parent="3" name="XY10113001">
+        <comment>融资人</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="45" parent="3" name="XY10113002">
+        <comment>融资数额</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="46" parent="3" name="XY20301004">
+        <comment>判决书名称</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="47" parent="3" name="XY20301005">
+        <comment>判决书编号</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="48" parent="3" name="XY20301007">
+        <comment>文书正文</comment>
+        <data-type>text</data-type>
+      </column>
+      <column id="49" parent="3" name="XY10105004">
+        <comment>变更日期</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="50" parent="3" name="XY10105005">
+        <comment>变更类型</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="51" parent="3" name="XY10105006">
+        <comment>变更前内容</comment>
+        <data-type>text</data-type>
+      </column>
+      <column id="52" parent="3" name="XY10105007">
+        <comment>变更后内容</comment>
+        <data-type>text</data-type>
+      </column>
+      <column id="53" parent="3" name="XY10406005">
+        <comment>商标名称</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="54" parent="3" name="XY10406001">
+        <comment>注册号</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="55" parent="3" name="XY10406003">
+        <comment>国际分类号</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="56" parent="3" name="XY10406011">
+        <comment>商标状态</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="57" parent="3" name="XY10406002">
+        <comment>注册日期</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="58" parent="3" name="XY10406004">
+        <comment>图样URL</comment>
+        <data-type>text</data-type>
+      </column>
+      <column id="59" parent="3" name="LS10101001">
+        <comment>网站（网店）名称</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="60" parent="3" name="LS10405002">
+        <comment>网站（网店）网址</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="61" parent="3" name="XY10405004">
+        <comment>备案号</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="62" parent="3" name="XY10405005">
+        <comment>网站状态</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="63" parent="3" name="XY10405006">
+        <comment>审核时间</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="64" parent="3" name="XY10405007">
+        <comment>主办单位性质</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="65" parent="3" name="XY10419001">
+        <comment>软件全称</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="66" parent="3" name="XY10419013">
+        <comment>软件简称</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="67" parent="3" name="XY10419003">
+        <comment>软件登记号</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="68" parent="3" name="XY10419002">
+        <comment>软件分类号</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="69" parent="3" name="XY10419004">
+        <comment>软件版本号</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="70" parent="3" name="XY10419006">
+        <comment>软件首次发表日期</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="71" parent="3" name="XY10419005">
+        <comment>软件登记日期</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="72" parent="3" name="XY30101003">
+        <comment>网站来源</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="73" parent="3" name="XY30101004">
+        <comment>网站类型</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="74" parent="3" name="XY10417001">
+        <comment>职位名称</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="75" parent="3" name="XY10417002">
+        <comment>工作地点</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="76" parent="3" name="XY10417003">
+        <comment>薪资</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="77" parent="3" name="XY10417004">
+        <comment>发布时间</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="78" parent="3" name="XY10417005">
+        <comment>招聘人数</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="79" parent="3" name="url">
+        <columns>XY30101001</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="80" parent="3" name="PRIMARY">
+        <columns>id
+XY30101001</columns>
+        <primary>1</primary>
+      </key>
+      <key id="81" parent="3" name="url">
+        <columns>XY30101001</columns>
+        <underlying-index>url</underlying-index>
+      </key>
+      <column id="82" parent="4" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="83" parent="4" name="crl_30101001">
+        <comment>URL</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="84" parent="4" name="crl_30101003">
+        <comment>网站名称</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="85" parent="4" name="crl_30101004">
+        <comment>网站类型</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="86" parent="4" name="crl_10101001">
+        <comment>行政相对人名称</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="87" parent="4" name="crl_10401001">
+        <comment>行政许可决定书文号</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="88" parent="4" name="crl_10401002">
+        <comment>项目名称(双公示)</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="89" parent="4" name="crl_10401003">
+        <comment>审批类别</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="90" parent="4" name="crl_10401004">
+        <comment>许可内容</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="91" parent="4" name="crl_10101002">
+        <comment>统一社会信用代码</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="92" parent="4" name="crl_10101004">
+        <comment>组织机构代码</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="93" parent="4" name="crl_10101003">
+        <comment>工商登记码</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="94" parent="4" name="crl_10101005">
+        <comment>税务登记号</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="95" parent="4" name="crl_10101007">
+        <comment>法定代表人姓名</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="96" parent="4" name="crl_10401005">
+        <comment>许可决定日期</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="97" parent="4" name="crl_10401006">
+        <comment>许可截止期</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="98" parent="4" name="crl_10401007">
+        <comment>许可机关</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="99" parent="4" name="crl_10401009">
+        <comment>当前状态</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="100" parent="4" name="crl_10401008">
+        <comment>地方编码</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="101" parent="4" name="crl_20201001">
+        <comment>行政处罚决定书文号</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="102" parent="4" name="crl_20201002">
+        <comment>处罚名称</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="103" parent="4" name="crl_20201003">
+        <comment>处罚类别</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="104" parent="4" name="crl_20201004">
+        <comment>处罚事由</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="105" parent="4" name="crl_20201005">
+        <comment>处罚依据</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="106" parent="4" name="crl_20201007">
+        <comment>处罚结果</comment>
+        <data-type>text</data-type>
+      </column>
+      <column id="107" parent="4" name="crl_20201006">
+        <comment>处罚决定日期</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="108" parent="4" name="crl_20201008">
+        <comment>处罚机关</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="109" parent="4" name="crl_20201009">
+        <comment>当前状态</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="110" parent="4" name="crl_20201010">
+        <comment>地方编码</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="111" parent="4" name="m010101">
+        <comment>主体识别码</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="112" parent="4" name="insert_time">
+        <comment>入库时间</comment>
+        <mandatory>1</mandatory>
+        <data-type>timestamp</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <index id="113" parent="4" name="id">
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <index id="114" parent="4" name="url">
+        <columns>crl_30101001</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="115" parent="4" name="id">
+        <columns>id</columns>
+        <underlying-index>id</underlying-index>
+      </key>
+      <key id="116" parent="4" name="PRIMARY">
+        <columns>id
+crl_30101001</columns>
+        <primary>1</primary>
+      </key>
+      <key id="117" parent="4" name="url">
+        <columns>crl_30101001</columns>
+        <underlying-index>url</underlying-index>
+      </key>
+      <column id="118" parent="5" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="119" parent="5" name="url">
+        <comment>URL</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="120" parent="5" name="diqu">
+        <comment>地区</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="121" parent="5" name="zbje">
+        <comment>中标金额</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="122" parent="5" name="pubtime">
+        <comment>发布时间</comment>
+        <data-type>datetime</data-type>
+      </column>
+      <column id="123" parent="5" name="zbtype">
+        <comment>类型</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="124" parent="5" name="pm">
+        <comment>品目</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="125" parent="5" name="cgr">
+        <comment>采购人</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="126" parent="5" name="dljg">
+        <comment>代理机构</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="127" parent="5" name="name">
+        <comment>项目标题</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="128" parent="5" name="content">
+        <comment>内容</comment>
+        <data-type>text</data-type>
+      </column>
+      <column id="129" parent="5" name="qyname">
+        <comment>企业名称</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="130" parent="5" name="ztsbm">
+        <comment>主体识别码</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="131" parent="5" name="author">
+        <comment>网站来源</comment>
+        <data-type>varchar(255)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="132" parent="5" name="insert_time">
+        <comment>入库时间</comment>
+        <data-type>timestamp</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <index id="133" parent="5" name="qyname">
+        <columns>qyname</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <index id="134" parent="5" name="url">
+        <columns>url</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="135" parent="5" name="PRIMARY">
+        <columns>id
+url</columns>
+        <primary>1</primary>
+      </key>
+      <key id="136" parent="5" name="qyname">
+        <columns>qyname</columns>
+        <underlying-index>qyname</underlying-index>
+      </key>
+      <column id="137" parent="6" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="138" parent="6" name="url">
+        <comment>URL</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="139" parent="6" name="diqu">
+        <comment>地区</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="140" parent="6" name="zbje">
+        <comment>中标金额</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="141" parent="6" name="pubtime">
+        <comment>发布时间</comment>
+        <data-type>datetime</data-type>
+      </column>
+      <column id="142" parent="6" name="zbtype">
+        <comment>类型</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="143" parent="6" name="pm">
+        <comment>品目</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="144" parent="6" name="cgr">
+        <comment>采购人</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="145" parent="6" name="dljg">
+        <comment>代理机构</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="146" parent="6" name="name">
+        <comment>项目标题</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="147" parent="6" name="content">
+        <comment>内容</comment>
+        <data-type>text</data-type>
+      </column>
+      <column id="148" parent="6" name="qyname">
+        <comment>企业名称</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="149" parent="6" name="ztsbm">
+        <comment>主体识别码</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="150" parent="6" name="author">
+        <comment>网站来源</comment>
+        <data-type>varchar(255)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="151" parent="6" name="insert_time">
+        <comment>入库时间</comment>
+        <data-type>timestamp</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <index id="152" parent="6" name="qyname">
+        <columns>qyname</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="153" parent="6" name="url">
+        <columns>url</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="154" parent="6" name="PRIMARY">
+        <columns>id
+url</columns>
+        <primary>1</primary>
+      </key>
+      <column id="155" parent="7" name="id">
+        <comment>索引id</comment>
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="156" parent="7" name="crl_30101001">
+        <comment>URL</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="157" parent="7" name="crl_30101002">
+        <comment>公告原文</comment>
+        <data-type>text</data-type>
+      </column>
+      <column id="158" parent="7" name="crl_30101003">
+        <comment>网站名称</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="159" parent="7" name="crl_30101004">
+        <comment>网站类型</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="160" parent="7" name="crl_10416001">
+        <comment>项目名称</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="161" parent="7" name="crl_10416007">
+        <comment>项目编号</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="162" parent="7" name="crl_10416008">
+        <comment>项目种类</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="163" parent="7" name="crl_10416002">
+        <comment>行政区域</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="164" parent="7" name="crl_10416003">
+        <comment>公告时间</comment>
+        <data-type>datetime</data-type>
+      </column>
+      <column id="165" parent="7" name="crl_10416010">
+        <comment>报名起始时间</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="166" parent="7" name="crl_10416011">
+        <comment>报名终止时间</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="167" parent="7" name="crl_10416012">
+        <comment>投标起始时间</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="168" parent="7" name="crl_10416013">
+        <comment>投标截至时间</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="169" parent="7" name="crl_10416014">
+        <comment>开标时间</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="170" parent="7" name="crl_10416015">
+        <comment>项目估算</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="171" parent="7" name="crl_10416016">
+        <comment>投标保证金</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="172" parent="7" name="crl_10416017">
+        <comment>公告类型</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="173" parent="7" name="crl_10416018">
+        <comment>招标单位</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="174" parent="7" name="crl_10416019">
+        <comment>招标单位联系地址</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="175" parent="7" name="crl_10416020">
+        <comment>招标单位负责人</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="176" parent="7" name="crl_10416021">
+        <comment>招标单位联系方式</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="177" parent="7" name="crl_10416022">
+        <comment>代理机构</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="178" parent="7" name="crl_10416023">
+        <comment>代理机构联系地址</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="179" parent="7" name="crl_10416024">
+        <comment>代理机构负责人</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="180" parent="7" name="crl_10416025">
+        <comment>代理机构联系方式</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="181" parent="7" name="m010101">
+        <comment>主体识别码</comment>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="182" parent="7" name="insert_time">
+        <comment>入库时间</comment>
+        <data-type>timestamp</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <index id="183" parent="7" name="url">
+        <columns>crl_30101001</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="184" parent="7" name="PRIMARY">
+        <columns>id
+crl_30101001</columns>
+        <primary>1</primary>
+      </key>
+      <key id="185" parent="7" name="url">
+        <columns>crl_30101001</columns>
+        <underlying-index>url</underlying-index>
+      </key>
+    </database-model>
+  </data-source>
+</component>
